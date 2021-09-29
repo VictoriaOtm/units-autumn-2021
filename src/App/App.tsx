@@ -1,54 +1,52 @@
-import React from 'react';
+import React, {ChangeEvent, useCallback, useState} from 'react';
 import './App.css';
-import {fakeOrders} from '../data/fakeOrders';
+import {fakeOrders, Order} from '../data/fakeOrders';
 import {OrderComponent} from '../Order/Order';
 import {
-  getSortFunction,
-  sortOrders,
-  sortTypes,
+	getSortFunction,
+	sortOrders,
+	sortTypes,
 } from '../utils/sortOrders';
 
-export default class App extends React.PureComponent {
-  state = {
-    sortType: sortTypes.DATE,
-  };
+export const App: React.FC = () => {
+	const [sortType, setSortType] = useState(sortTypes.DATE);
 
-  getOrders(orders) {
-    if (!orders || !orders.length) {
-      return null;
-    }
+	const getOrders = (orders: Order[]) => {
+		if (!orders || !orders.length) {
+			return null;
+		}
 
-    return orders.map((order, index) => (
-      <Order
-        key={index}
-        order={order}
-      />
-    ))
-  }
+		return orders.map((order, index) => (
+			<OrderComponent
+				key={index}
+				order={order}
+			/>
+		));
+	};
 
-  render() {
-    const {sortType} = this.state;
+	const onSelectChange = useCallback((event: ChangeEvent<HTMLSelectElement>) => {
+		setSortType(event.target.value);
+	}, []);
 
-    sortOrders(fakeOrders, getSortFunction(sortType));
+	sortOrders(fakeOrders, getSortFunction(sortType));
 
-    return (
-      <div className='App'>
-        <header className='App-header'>
-          <span className='App-header-title'>Сортировать заказы</span>
+	return (
+		<div className='App'>
+			<header className='App-header'>
+				<span className='App-header-title'>Сортировать заказы</span>
 
-          <select
-            value={sortType}
-            onChange={(event) => this.setState({sortType: event.target.value})}
-          >
-            <option value={sortTypes.COUNT}>по количеству товаров</option>
-            <option value={sortTypes.DATE}>по дате</option>
-          </select>
-        </header>
+				<select
+					value={sortType}
+					onChange={onSelectChange}
+				>
+					<option value={sortTypes.COUNT}>по количеству товаров</option>
+					<option value={sortTypes.DATE}>по дате</option>
+				</select>
+			</header>
 
-        <div className='App-container'>
-          {this.getOrders(fakeOrders)}
-        </div>
-      </div>
-      )
-  }
-}
+			<div className='App-container'>
+				{getOrders(fakeOrders)}
+			</div>
+		</div>
+	);
+};

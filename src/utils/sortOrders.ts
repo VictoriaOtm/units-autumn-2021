@@ -8,19 +8,17 @@ export const sortTypes = {
 	COUNT: 'count',
 };
 
-export type sortFunctionType = () => number;
-
 /**
  * Функция сортировки заказов
  * @param {Array} orders - массив заказов
  * @param {Function} sortFunction - функция сортировки
  */
-export const sortOrders = (orders: Order[], sortFunction: sortFunctionType) => {
+export const sortOrders = (orders: Order[], sortFunction: any) => {
 	if (!orders || !orders.length) {
 		return;
 	}
 
-	if (!sortFunction) {
+	if (!sortFunction || typeof sortFunction !== 'function') {
 		return;
 	}
 
@@ -35,10 +33,10 @@ export const sortOrders = (orders: Order[], sortFunction: sortFunctionType) => {
  */
 export const getSortFunction = (sortType: typeof sortTypes.COUNT | typeof sortTypes.DATE) => {
 	switch(sortType) {
-		case sortTypes.DATE:
-			return sortByDate;
-		case sortTypes.COUNT:
-			return sortByItemCount;
+	case sortTypes.DATE:
+		return sortByDate;
+	case sortTypes.COUNT:
+		return sortByItemCount;
 	}
 };
 
@@ -63,12 +61,12 @@ export const sortByItemCount = (order1: Order, order2: Order): number => {
 	}
 
 	switch (true) {
-		case items1.length < items2.length:
-			return -1;
-		case items1.length === items2.length:
-			return 0;
-		default:
-			return 1;
+	case items1.length < items2.length:
+		return -1;
+	case items1.length === items2.length:
+		return 0;
+	default:
+		return 1;
 	}
 };
 
@@ -92,11 +90,11 @@ export const sortByDate = (order1: Order, order2: Order): number => {
 	}
 
 	switch (true) {
-		case date1 < date2:
-			return 1;
-		case date1 > date2:
-			return -1;
-		default:
-			return 0;
+	case date1 < date2:
+		return 1;
+	case date1 > date2:
+		return -1;
+	default:
+		return 0;
 	}
 };

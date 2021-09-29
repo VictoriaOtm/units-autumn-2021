@@ -15,6 +15,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "lint": "eslint ./src --quiet",
     "test": "react-scripts test --watchAll=false",
     "test-coverage": "npm test -- --coverage",
     "test-update-snap": "npm test -- --updateSnapshot",
@@ -38,12 +39,17 @@
   },
   "devDependencies": {
     "@types/enzyme": "^3.10.3",
+    "@types/enzyme-adapter-react-16": "^1.0.6",
     "@types/enzyme-to-json": "^1.5.3",
     "@types/jest": "^24.9.1",
     "@types/react-test-renderer": "^16.9.0",
+    "@typescript-eslint/eslint-plugin": "^4.32.0",
+    "@typescript-eslint/parser": "^4.32.0",
     "enzyme": "^3.10.0",
-    "enzyme-adapter-react-16": "^1.14.0",
-    "enzyme-to-json": "^3.4.2"
+    "enzyme-adapter-react-16": "^1.15.6",
+    "enzyme-to-json": "^3.4.2",
+    "eslint": "^7.32.0",
+    "eslint-plugin-react": "^7.26.0"
   },
   "jest": {
     "collectCoverageFrom": [

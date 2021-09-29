@@ -1,8 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 describe('Order.tsx', () => {
-  it('some test', () => {
-
-  });
+	it('some test', () => {
+		// test something here
+	});
 });
-

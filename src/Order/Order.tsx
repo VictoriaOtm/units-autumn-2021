@@ -20,7 +20,7 @@ export const OrderComponent: React.FC<OrderComponentProps> = ({
 		if (!items || !items.length) {
 			return (
 				<div>
-					{"Заказ пуст..."}
+					{'Заказ пуст...'}
 				</div>
 			);
 		}
@@ -32,8 +32,8 @@ export const OrderComponent: React.FC<OrderComponentProps> = ({
 			>
 				{item}
 			</div>
-		))
-	}
+		));
+	};
 
 	return (
 		<div className='Order'>
@@ -46,5 +46,5 @@ export const OrderComponent: React.FC<OrderComponentProps> = ({
 				{getItems()}
 			</div>
 		</div>
-	)
-}
+	);
+};
