@@ -1,6 +1,6 @@
 import React from 'react'
 
-describe('Order.js', () => {
+describe('Order.tsx', () => {
   it('some test', () => {
 
   });

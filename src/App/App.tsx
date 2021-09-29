@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import {fakeOrders} from '../data/fakeOrders';
-import Order from '../Order/Order';
+import {OrderComponent} from '../Order/Order';
 import {
   getSortFunction,
   sortOrders,

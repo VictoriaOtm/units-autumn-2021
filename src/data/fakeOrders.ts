@@ -1,4 +1,11 @@
-export const fakeOrders = [
+export type Order = {
+	id: number,
+	date: number,
+	shop: string,
+	items: string[],
+}
+
+export const fakeOrders: Order[] = [
 	{
 		id: 123,
 		date: 1544356800000,
