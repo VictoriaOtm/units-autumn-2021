@@ -1,4 +1,17 @@
-export const fakeOrders = [
+export type Order = {
+	id?: number,
+	date?: number,
+	shop?: string,
+	items?: string[],
+}
+
+export const fakeOrders: Order[] = [
+	{
+		id: 100,
+		date: 1588359900000,
+		shop: 'Сбереги Мега Маркер',
+		items: [],
+	},
 	{
 		id: 123,
 		date: 1544356800000,
@@ -11,7 +24,7 @@ export const fakeOrders = [
 	},
 	{
 		id: 124,
-		date: 1552481120000,
+		date: 1652481120000,
 		shop: 'Lamodник.ru',
 		items: [
 			'Жакет - BOREAL5',
@@ -22,7 +35,7 @@ export const fakeOrders = [
 	},
 	{
 		id: 126,
-		date: 1552585550000,
+		date: 1652585550000,
 		shop: 'Эльдоградо',
 		items: [
 			'Ноутбук Apple MacBook Air 13.3" (MQD32RU/A)',

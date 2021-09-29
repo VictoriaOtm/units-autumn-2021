@@ -1,6 +1,8 @@
 // Array sort doc
 // @see https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#Description
 
+import {Order} from '../data/fakeOrders';
+
 export const sortTypes = {
 	DATE: 'date',
 	COUNT: 'count',
@@ -11,12 +13,12 @@ export const sortTypes = {
  * @param {Array} orders - массив заказов
  * @param {Function} sortFunction - функция сортировки
  */
-export const sortOrders = (orders, sortFunction) => {
+export const sortOrders = (orders: Order[], sortFunction: any) => {
 	if (!orders || !orders.length) {
 		return;
 	}
 
-	if (!sortFunction || typeof sortFunction !== "function") {
+	if (!sortFunction || typeof sortFunction !== 'function') {
 		return;
 	}
 
@@ -29,12 +31,12 @@ export const sortOrders = (orders, sortFunction) => {
  * @param sortType
  * @returns {sortByItemCount|sortByDate}
  */
-export const getSortFunction = (sortType) => {
+export const getSortFunction = (sortType: typeof sortTypes.COUNT | typeof sortTypes.DATE) => {
 	switch(sortType) {
-		case sortTypes.DATE:
-			return sortByDate;
-		case sortTypes.COUNT:
-			return sortByItemCount;
+	case sortTypes.DATE:
+		return sortByDate;
+	case sortTypes.COUNT:
+		return sortByItemCount;
 	}
 };
 
@@ -46,11 +48,7 @@ export const getSortFunction = (sortType) => {
  * @param order1
  * @param order2
  */
-export const sortByItemCount = (order1, order2) => {
-	if (typeof order1 !== 'object' || typeof order2 !== 'object') {
-		return 0;
-	}
-
+export const sortByItemCount = (order1: Order, order2: Order): number => {
 	if (!order1 || !order2) {
 		return 0;
 	}
@@ -63,12 +61,12 @@ export const sortByItemCount = (order1, order2) => {
 	}
 
 	switch (true) {
-		case items1.length < items2.length:
-			return -1;
-		case items1.length === items2.length:
-			return 0;
-		default:
-			return 1;
+	case items1.length < items2.length:
+		return -1;
+	case items1.length === items2.length:
+		return 0;
+	default:
+		return 1;
 	}
 };
 
@@ -79,11 +77,7 @@ export const sortByItemCount = (order1, order2) => {
  * @param order1
  * @param order2
  */
-export const sortByDate = (order1, order2) => {
-	if (typeof order1 !== 'object' || typeof order2 !== 'object') {
-		return 0;
-	}
-
+export const sortByDate = (order1: Order, order2: Order): number => {
 	if (!order1 || !order2) {
 		return 0;
 	}
@@ -96,11 +90,11 @@ export const sortByDate = (order1, order2) => {
 	}
 
 	switch (true) {
-		case date1 < date2:
-			return 1;
-		case date1 > date2:
-			return -1;
-		default:
-			return 0;
+	case date1 < date2:
+		return 1;
+	case date1 > date2:
+		return -1;
+	default:
+		return 0;
 	}
 };

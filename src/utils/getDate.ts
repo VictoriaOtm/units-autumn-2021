@@ -1,4 +1,8 @@
-const weeks = {
+interface dateMap {
+	[key: number]: string;
+}
+
+const weeks: dateMap = {
 	0: 'вс',
 	1: 'пн',
 	2: 'вт',
@@ -8,7 +12,7 @@ const weeks = {
 	6: 'сб',
 };
 
-const months = {
+const months: dateMap = {
 	0: 'января',
 	1: 'февраля',
 	2: 'марта',
@@ -23,9 +27,9 @@ const months = {
 	11: 'декабря',
 };
 
-export function getDate(timestamp) {
-	if (!timestamp || typeof timestamp !== "number") {
-		return;
+export function getDate(timestamp: number): string {
+	if (!timestamp) {
+		return '';
 	}
 
 	const date = new Date(timestamp);
