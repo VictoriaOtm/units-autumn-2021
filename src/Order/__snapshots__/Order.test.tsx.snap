@@ -66,5 +66,3 @@ exports[`Order.tsx bad item 2`] = `
 `;
 
 exports[`Order.tsx bad order 1`] = `""`;
-
-exports[`Order.tsx render 1`] = `""`;
