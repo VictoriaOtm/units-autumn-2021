@@ -1,6 +1,6 @@
 import { type } from 'os';
 import {getSortFunction, sortByDate, sortByItemCount, sortTypes, sortOrders} from './sortOrders';
-import {fakeOrders} from '../data/fakeOrders'
+import {fakeOrders} from '../data/fakeOrders';
 
 describe('sortByItemCount function', () => {
 	it.each([

@@ -4,7 +4,7 @@ import {shallow, configure, ReactWrapper} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 jest.mock('../utils/getDate');
 import {getDate} from '../utils/getDate';
-import {fakeOrders} from '../data/fakeOrders'
+import {fakeOrders} from '../data/fakeOrders';
 
 
 
@@ -35,12 +35,12 @@ describe('Order.tsx', () => {
 	it('Пустой список', () => {
 		const wrapper = shallow(<OrderComponent {...data}/>);
 		expect(wrapper).toMatchSnapshot();
-		expect(wrapper.find('.Order-item').exists()).toBe(false)
+		expect(wrapper.find('.Order-item').exists()).toBe(false);
 	});
 
 	it('Список товаров', () => {
 		const wrapper = shallow(<OrderComponent {...data2}/>);
 		expect(wrapper).toMatchSnapshot();
-		expect(wrapper.find('.Order-item').length).toBe(3)
+		expect(wrapper.find('.Order-item').length).toBe(3);
 	});
 });
