@@ -1,6 +1,7 @@
+import { Order } from '../data/fakeOrders';
 import {sortByItemCount} from './sortOrders';
-import {sortByDate, getSortFunction} from './sortOrders';
-import {sortTypes} from './sortOrders'
+import {sortByDate, getSortFunction, sortOrders} from './sortOrders';
+import {sortTypes} from './sortOrders';
 
 describe('sortByItemCount function', () => {
 	it('same items count', () => {
@@ -36,7 +37,8 @@ describe('sortByItemCount function', () => {
 		[{items:['1', '2']}, {items:['1', '2', '3']}, -1],
 		[{}, {}, 0],
 		[{items:['1','2','3']},{items:['1','2']}, 1],
-		[{items:['1','2','3']},{items:['1','2', '3']}, 0]
+		[{items:['1','2','3']},{items:['1','2', '3']}, 0],
+		[null, null, 0]
 	])('test', (first, second, expected) => {
 		const result = sortByItemCount(first, second);
 		expect(result).toBe(expected);
@@ -52,14 +54,13 @@ describe('sortByDate function', () => {
 		[{date:1}, {date:2}, 1],
 		[{date:2}, {date:2}, 0],
 		[{date:2}, {date:1}, -1],
+		[{}, {}, 0],
 	])('test', (first, second, expected) => {
 		const result = sortByDate(first, second);
 		expect(result).toBe(expected);
 	});
 
 });
-
-
 
 describe('getSortFunction function', () => {
 	
@@ -70,6 +71,24 @@ describe('getSortFunction function', () => {
 		expect(result).toBe(sortByDate);
 	});
 
+	it('sortByItemCount', () => {
+		
+		const result = getSortFunction(sortTypes.COUNT);
+
+		expect(result).toBe(sortByItemCount);
+	});
+
+});
+
+describe('sortOrders function', () => {
+	it('correct sortOrders', () => {
+		
+		const orders: Order[] = [{'date':2}, {'date':1}];
+
+		sortOrders(orders, sortByDate);
+
+		expect(orders).toStrictEqual([{'date':2}, {'date':1}]);
+	});
 
 });
 
