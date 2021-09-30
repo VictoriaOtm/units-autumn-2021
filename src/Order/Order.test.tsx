@@ -10,6 +10,18 @@ import {fakeOrders} from '../data/fakeOrders';
 
 configure({ adapter: new Adapter() });
 
+const data = {
+	order: fakeOrders[0]
+};
+
+const data2 = {
+	order: fakeOrders[1]
+};
+
+const data3 = {
+	order: {}
+};
+
 describe('Order.tsx', () => {
 
 	beforeEach(() => {
@@ -20,27 +32,23 @@ describe('Order.tsx', () => {
 		jest.resetModules();
 	});
 
-	const data = {
-		order: fakeOrders[0]
-	};
-
-	const data2 = {
-		order: fakeOrders[1]
-	};
-
-	const dataEmpty = { 
-		order: {} 
-	};
+	it('вызов getDate', () => {
+		shallow(<OrderComponent {...data}/>);
+		expect(getDate).toHaveBeenCalledTimes(1);
+	});
 
 	it('Пустой список', () => {
 		const wrapper = shallow(<OrderComponent {...data}/>);
 		expect(wrapper).toMatchSnapshot();
-		expect(wrapper.find('.Order-item').exists()).toBe(false);
 	});
 
 	it('Список товаров', () => {
 		const wrapper = shallow(<OrderComponent {...data2}/>);
 		expect(wrapper).toMatchSnapshot();
-		expect(wrapper.find('.Order-item').length).toBe(3);
+	});
+
+	it('Cписок равен null', () => {
+		const wrapper = shallow(<OrderComponent {...data3}/>);
+		expect(wrapper).toMatchSnapshot();
 	});
 });

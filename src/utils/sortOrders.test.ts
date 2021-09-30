@@ -2,7 +2,7 @@ import { type } from 'os';
 import {getSortFunction, sortByDate, sortByItemCount, sortTypes, sortOrders} from './sortOrders';
 import {fakeOrders} from '../data/fakeOrders';
 
-describe('sortByItemCount function', () => {
+describe('sortOrders', () => {
 	it.each([
 		{ 
 			order1: { 
@@ -30,34 +30,42 @@ describe('sortByItemCount function', () => {
 				items: fakeOrders[0].items
 			},
 			res: 1
-		},
-		{	order1: { }, 
-			order2: { },
-			res: 0
-		},
-	])('same items count', (data) => {
+		}
+	])('sortByItemCount function', (data) => {
 		const result = sortByItemCount(data.order1, data.order2);
 		expect(result).toBe(data.res);
 	});
-});
 
-describe.each(
-	[
-		{
-			type: sortTypes.COUNT, 
-			res: sortByItemCount
+	it.each([
+		{	
+			order1: { }, 
+			order2: { },
+			res: 0
 		},
-		{
-			type: sortTypes.DATE, 
-			res: sortByDate
+		{	
+			order1: { items: [] }, 
+			order2: { items: [] },
+			res: 0
 		},
-	]
-)('getSortFunction function', (data) => {
-	expect(data.res).toBe(getSortFunction(data.type));
-});
+	])('Проверки для некорректных данных в sortByItemCount function', (data) => {
+		const result = sortByItemCount(data.order1, data.order2);
+		expect(result).toBe(data.res);
+	});
 
-
-describe('sortByDate function', () => {
+	it.each(
+		[
+			{
+				type: sortTypes.COUNT, 
+				res: sortByItemCount
+			},
+			{
+				type: sortTypes.DATE, 
+				res: sortByDate
+			},
+		]
+	)('getSortFunction function', (data) => {
+		expect(data.res).toBe(getSortFunction(data.type));
+	});
 	it.each([
 		{ 
 			order1: { 
@@ -86,29 +94,25 @@ describe('sortByDate function', () => {
 			},
 			res: 0
 		},
-	])('same date', (data) => {
+	])('sortByDate function', (data) => {
 		const result = sortByDate(data.order1, data.order2);
 		expect(result).toBe(data.res);
 	});
-});
 
-
-describe('sortOrders function', () => {
-	it('Вызов с пустыми order', () => {
+	it('sortOrders function - Вызов с пустыми order', () => {
 		const func = jest.fn();
 		const res = sortOrders([], func);
 		expect(res).toBeUndefined();
 	});
 
-	it('Вызов с пустой функцией', () => {
+	it('sortOrders function - Вызов с пустой функцией', () => {
 		const res = sortOrders([{}, {}], undefined);
 		expect(res).toBeUndefined();
 	});
 
-	it('Вызов функции сортировки', () => {
+	it('sortOrders function - Вызов функции сортировки', () => {
 		const func = jest.fn();
 		sortOrders([{}, {}], func);
 		expect(func).toHaveBeenCalledTimes(1);
 	});
 });
-
