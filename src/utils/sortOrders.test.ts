@@ -15,10 +15,10 @@ describe('sortOrders function', () => {
 });
 
 describe('getSortFunction function', () => {
-	const orderDate1 = { date: 31 }
-	const orderDate2 = { date: 30 }
-	const orderItems1 = { items: ['11', '12'] }
-	const orderItems2 = { items: ['21', '22', '23'] }
+	const orderDate1 = { date: 31 };
+	const orderDate2 = { date: 30 };
+	const orderItems1 = { items: ['11', '12'] };
+	const orderItems2 = { items: ['21', '22', '23'] };
 
 	it('returns sortByDate', () => {
 		const sort = getSortFunction(sortTypes.DATE);
