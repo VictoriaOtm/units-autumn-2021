@@ -1,13 +1,13 @@
 import React from 'react';
 import {App} from './App';
 import {sortTypes} from '../utils/sortOrders';
-import {shallow, configure} from 'enzyme';
+import {shallow, configure, ShallowWrapper} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
 configure({ adapter: new Adapter() });
 
 describe('App component', () => {
-	let wrapper;
+	let wrapper: ShallowWrapper;
 
 	beforeEach(() => {
 		wrapper = shallow(<App/>);
