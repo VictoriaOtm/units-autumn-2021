@@ -1,4 +1,6 @@
 import {sortByItemCount} from './sortOrders';
+import {sortByDate, getSortFunction} from './sortOrders';
+import {sortTypes} from './sortOrders'
 
 describe('sortByItemCount function', () => {
 	it('same items count', () => {
@@ -14,5 +16,60 @@ describe('sortByItemCount function', () => {
 
 		expect(result).toBe(0);
 	});
+
+	it('same items count', () => {
+		const order1 = {
+			items: undefined,
+		};
+
+		const order2 = {
+			items: undefined,
+		};
+
+		const result = sortByItemCount(order1, order2);
+
+		expect(result).toBe(0);
+	});
+
+
+	test.each([
+		[{items:['1', '2']}, {items:['1', '2', '3']}, -1],
+		[{}, {}, 0],
+		[{items:['1','2','3']},{items:['1','2']}, 1],
+		[{items:['1','2','3']},{items:['1','2', '3']}, 0]
+	])('test', (first, second, expected) => {
+		const result = sortByItemCount(first, second);
+		expect(result).toBe(expected);
+	});
+});
+
+
+describe('sortByDate function', () => {
+	
+
+	test.each([
+		[{date:undefined}, {date:undefined}, 0],
+		[{date:1}, {date:2}, 1],
+		[{date:2}, {date:2}, 0],
+		[{date:2}, {date:1}, -1],
+	])('test', (first, second, expected) => {
+		const result = sortByDate(first, second);
+		expect(result).toBe(expected);
+	});
+
+});
+
+
+
+describe('getSortFunction function', () => {
+	
+	it('sortByDate', () => {
+		
+		const result = getSortFunction(sortTypes.DATE);
+
+		expect(result).toBe(sortByDate);
+	});
+
+
 });
 
