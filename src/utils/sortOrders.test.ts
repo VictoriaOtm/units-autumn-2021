@@ -103,53 +103,53 @@ describe('sortByDate', () => {
 
 describe('getSortFunction', () => {
 	it('by count', () => {
-		const result = getSortFunction(sortTypes.COUNT)
+		const result = getSortFunction(sortTypes.COUNT);
 		expect(result).toBe(sortByItemCount);
 	});
 	it('by date', () => {
-		const result = getSortFunction(sortTypes.DATE)
+		const result = getSortFunction(sortTypes.DATE);
 		expect(result).toBe(sortByDate);
 	});
 });
 
 describe('sort', () => {
 	it('can_sort', () => {
-		var orders = [{
+		const orders = [{
 			date: 1,
 		},
 		{
 			date: 1,
 		}];
-		var oldOrders = [...orders]
+		const oldOrders = [...orders];
 		sortOrders(orders, sortByDate);
 		expect(orders).toStrictEqual(oldOrders);
 	});
 	it('cant sort no function', () => {
-		var orders = [{
+		const orders = [{
 			date: 1,
 		},
 		{
 			date: 1,
 		}];
-		var oldOrders = [...orders]
+		const oldOrders = [...orders];
 		sortOrders(orders, undefined);
 		expect(orders).toStrictEqual(oldOrders);
 	});
 	it('cant sort another function', () => {
-		var orders = [{
+		const orders = [{
 			date: 1,
 		},
 		{
 			date: 1,
 		}];
-		var oldOrders = [...orders]
+		const oldOrders = [...orders];
 		sortOrders(orders, () => {
-			var x: Number = 0;
+			const x = 0;
 		});
 		expect(orders).toStrictEqual(oldOrders);
 	});
 	it('cant sort no orders', () => {
-		var orders: Order[] = [];
+		const orders: Order[] = [];
 		sortOrders(orders, sortByDate);
 		expect(orders).toStrictEqual([]);
 	});

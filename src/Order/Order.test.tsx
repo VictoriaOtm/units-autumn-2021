@@ -6,7 +6,7 @@ import Adapter from 'enzyme-adapter-react-16';
 
 configure({ adapter: new Adapter() });
 
-jest.mock('../utils/getDate')
+jest.mock('../utils/getDate');
 import { getDate } from '../utils/getDate';
 
 describe('Order.tsx', () => {
@@ -16,8 +16,8 @@ describe('Order.tsx', () => {
 
 	it('empty', () => {
 		const testOrder: Order = {};
-		var wrapper = shallow(<OrderComponent order={testOrder} />);
-		expect(wrapper).toMatchSnapshot()
+		const wrapper = shallow(<OrderComponent order={testOrder} />);
+		expect(wrapper).toMatchSnapshot();
 	});
 
 	it('no items', () => {
@@ -25,8 +25,8 @@ describe('Order.tsx', () => {
 			date: 1,
 			shop: 'shop'
 		};
-		var wrapper = shallow(<OrderComponent order={testOrder} />);
-		expect(wrapper).toMatchSnapshot()
+		const wrapper = shallow(<OrderComponent order={testOrder} />);
+		expect(wrapper).toMatchSnapshot();
 	});
 
 	it('usual order', () => {
@@ -38,10 +38,10 @@ describe('Order.tsx', () => {
 		};
 
 
-		var wrapper = shallow(<OrderComponent order={testOrder} />);
-		expect(wrapper).toMatchSnapshot()
-		expect(getDate).toHaveBeenCalled()
-		jest.clearAllMocks()
+		const wrapper = shallow(<OrderComponent order={testOrder} />);
+		expect(wrapper).toMatchSnapshot();
+		expect(getDate).toHaveBeenCalled();
+		jest.clearAllMocks();
 	});
 });
 
