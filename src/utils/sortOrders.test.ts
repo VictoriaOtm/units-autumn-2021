@@ -111,7 +111,7 @@ describe('sortByDate function', () => {
 
 describe('sortOrders function', () => {
 	test.each([
-		[null, ()=>{return ''}],
+		[null, ()=>{return '';}],
 		[[1, 2, 3, 4], null],
 	])('not valid case', (orders, sort) => {
 		const result = sortOrders(orders, sort);
@@ -177,6 +177,6 @@ describe('getSortFunction function', () => {
 	
 	it('sortType invalid', () => {
 		const result = getSortFunction('');
-		expect(result).toBeUndefined();;
+		expect(result).toBeUndefined();
 	});
 });
