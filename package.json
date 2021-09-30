@@ -20,6 +20,7 @@
     "test-watch": "react-scripts test",
     "test-coverage": "npm test -- --coverage",
     "test-update-snap": "npm test -- --updateSnapshot",
+    "test-update-snap-watch": "npm run test-watch -- --updateSnapshot",
     "eject": "react-scripts eject",
     "test:CI": "set CI=true &&react-scripts test --env=jsdom --testResultsProcessor=./node_modules/jest-html-reporter"
   },
@@ -55,7 +56,7 @@
   "jest": {
     "collectCoverageFrom": [
       "src/Order/*.{js,jsx,ts,tsx}",
-      "src/utils/sortOrders.js"
+      "src/utils/sortOrders.ts"
     ],
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
