@@ -15,20 +15,31 @@ describe('sortOrders function', () => {
 });
 
 describe('getSortFunction function', () => {
-	const orderDate1 = { date: 31 };
-	const orderDate2 = { date: 30 };
-	const orderItems1 = { items: ['11', '12'] };
-	const orderItems2 = { items: ['21', '22', '23'] };
-
 	it('returns sortByDate', () => {
+		const orderDate1 = {
+			date: 31
+		};
+		const orderDate2 = {
+			date: 30
+		};
+
 		const sort = getSortFunction(sortTypes.DATE);
 		const result = sort(orderDate1, orderDate2);
+
 		expect(result).not.toBe(0);
 	});
 
 	it('returns sortByItemCount', () => {
+		const orderItems1 = {
+			items: ['11', '12']
+		};
+		const orderItems2 = {
+			items: ['21', '22', '23']
+		};
+
 		const sort = getSortFunction(sortTypes.COUNT);
 		const result = sort(orderItems1, orderItems2);
+
 		expect(result).not.toBe(0);
 	});
 });
@@ -43,7 +54,6 @@ describe('sortByItemCount function', () => {
 		const order1 = {
 			items: items1,
 		};
-
 		const order2 = {
 			items: items2,
 		};
@@ -64,7 +74,6 @@ describe('sortByDate function', () => {
 		const order1 = {
 			date: date1,
 		};
-
 		const order2 = {
 			date: date2,
 		};
