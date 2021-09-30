@@ -5,9 +5,9 @@ describe('sortByItemCount function', () => {
 		{first: {items: ['item1', 'item2']}, second: {items: ['1', '2']}, expected: 0},
 		{first: {items: ['item1', 'item2', 'item3']}, second: {items: ['1', '2']}, expected: 1},
 		{first: {items: ['item1', 'item2']}, second: {items: ['1', '2', '3', '4']}, expected: -1},		
-	  ])('sort items with orders', ({first, second, expected}) => {
+	])('sort items with orders', ({first, second, expected}) => {
 		expect(sortByItemCount(first, second)).toBe(expected);
-	  });
+	});
 
 	test.each([
 		{first: {date: 1652481120000}, second: {items: ['1', '2']}, expected: 0},
@@ -33,9 +33,9 @@ describe('sortByDate function', () => {
 		{first: {date: 1652481120000}, second: {date: 1652481120000}, expected: 0},
 		{first: {date: 1652585550000}, second: {date: 1652481120000}, expected: -1},
 		{first: {date: 1544356800000}, second: {date: 1652585550000}, expected: 1},
-	  ])('sort items date', ({first, second, expected}) => {
+	])('sort items date', ({first, second, expected}) => {
 		expect(sortByDate(first, second)).toBe(expected);
-	  });
+	});
 
 	test.each([
 		{first: {date: 1652481120000}, second: {items: ['1', '2']}, expected: 0},
@@ -57,24 +57,6 @@ describe('sortByDate function', () => {
 });
 
 describe('getSortFunction function', () => {
-	// it('type function: date', () => {
-	// 	const order1 = sortTypes.DATE;
-
-	// 	const result = getSortFunction(order1)?.name;
-	// 	const functionName = 'sortByDate';
-
-	// 	expect(result).toBe(functionName);
-	// });
-
-	// it('type function: count', () => {
-	// 	const order1 = sortTypes.COUNT;
-
-	// 	const result = getSortFunction(order1)?.name;
-	// 	const functionName = 'sortByItemCount';
-
-	// 	expect(result).toBe(functionName);
-	// });
-
 	test.each([
 		{order: sortTypes.COUNT, expected: 'sortByItemCount'},
 		{order: sortTypes.DATE, expected: 'sortByDate'},
