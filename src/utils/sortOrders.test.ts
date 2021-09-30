@@ -2,7 +2,7 @@ import { type } from 'os';
 import {getSortFunction, sortByDate, sortByItemCount, sortTypes, sortOrders} from './sortOrders';
 import {fakeOrders} from '../data/fakeOrders';
 
-describe('sortOrders', () => {
+describe('Сортировка по числу', () => {
 	it.each([
 		{ 
 			order1: { 
@@ -51,7 +51,9 @@ describe('sortOrders', () => {
 		const result = sortByItemCount(data.order1, data.order2);
 		expect(result).toBe(data.res);
 	});
+});
 
+describe('Выбор функции сортировки', () => {
 	it.each(
 		[
 			{
@@ -66,6 +68,9 @@ describe('sortOrders', () => {
 	)('getSortFunction function', (data) => {
 		expect(data.res).toBe(getSortFunction(data.type));
 	});
+});
+
+describe('Сортировка по дате', () => {	
 	it.each([
 		{ 
 			order1: { 
@@ -98,7 +103,9 @@ describe('sortOrders', () => {
 		const result = sortByDate(data.order1, data.order2);
 		expect(result).toBe(data.res);
 	});
+});
 
+describe('sortOrders', () => {	
 	it('sortOrders function - Вызов с пустыми order', () => {
 		const func = jest.fn();
 		const res = sortOrders([], func);
