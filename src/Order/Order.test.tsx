@@ -4,6 +4,8 @@ import {shallow, configure, ReactWrapper} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 jest.mock('../utils/getDate');
 import {getDate} from '../utils/getDate';
+import {fakeOrders} from '../data/fakeOrders'
+
 
 
 configure({ adapter: new Adapter() });
@@ -19,25 +21,11 @@ describe('Order.tsx', () => {
 	});
 
 	const data = {
-		order: {
-			id: 100,
-			date: 1588359900000,				
-			shop: 'Сбереги Мега Маркер',
-			items: []
-		}
+		order: fakeOrders[0]
 	};
 
 	const data2 = {
-		order: {
-			id: 100,
-			date: 1588359900000,				
-			shop: 'Сбереги Мега Маркер',
-			items: [
-				'Утиный пластмасса для показ новый год',
-				'Курица из нержавеющей стали, утка, гусь, голубь, питьевой фонтан',
-				'Новый стиль один розница яйцо для упаковки форма латекс',
-			]
-		}
+		order: fakeOrders[1]
 	};
 
 	const dataEmpty = { 
@@ -47,16 +35,12 @@ describe('Order.tsx', () => {
 	it('Пустой список', () => {
 		const wrapper = shallow(<OrderComponent {...data}/>);
 		expect(wrapper).toMatchSnapshot();
+		expect(wrapper.find('.Order-item').exists()).toBe(false)
 	});
 
 	it('Список товаров', () => {
 		const wrapper = shallow(<OrderComponent {...data2}/>);
 		expect(wrapper).toMatchSnapshot();
-	});
-
-
-	it('Пустой Order', () => {
-		const wrapper = shallow(<OrderComponent {...dataEmpty}/>);
-		expect(wrapper).toMatchSnapshot();
+		expect(wrapper.find('.Order-item').length).toBe(3)
 	});
 });

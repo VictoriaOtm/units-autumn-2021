@@ -1,37 +1,38 @@
 import { type } from 'os';
 import {getSortFunction, sortByDate, sortByItemCount, sortTypes, sortOrders} from './sortOrders';
+import {fakeOrders} from '../data/fakeOrders'
 
 describe('sortByItemCount function', () => {
 	it.each([
 		{ 
 			order1: { 
-				items: ['item1', 'item2'] 
+				items: fakeOrders[0].items
 			},
 			order2: { 
-				items: ['1', '2'] 
+				items: fakeOrders[0].items
 			},
 			res: 0
 		},
 		{ 
 			order1: { 
-				items: ['item1', 'item2'] 
+				items: fakeOrders[0].items
 			}, 
 			order2: {
-				items: ['1']
-			},
-			res: 1
-		},
-		{ 
-			order1: { 
-				items: ['item1', 'item2']  
-			}, 
-			order2: { 
-				items: ['item1', 'item2','item3']  
+				items: fakeOrders[1].items
 			},
 			res: -1
 		},
+		{ 
+			order1: { 
+				items: fakeOrders[1].items
+			}, 
+			order2: { 
+				items: fakeOrders[0].items
+			},
+			res: 1
+		},
 		{	order1: { }, 
-			order2: {  },
+			order2: { },
 			res: 0
 		},
 	])('same items count', (data) => {
@@ -60,28 +61,28 @@ describe('sortByDate function', () => {
 	it.each([
 		{ 
 			order1: { 
-				date: 1588359900000 
+				date: fakeOrders[0].date 
 			}, 
 			order2: { 
-				date: 1544356800000 
+				date: fakeOrders[1].date 
 			},
 			res: -1
 		},
 		{ 
 			order1: { 
-				date: 1544356800000 
+				date: fakeOrders[1].date 
 			}, 
 			order2: { 
-				date: 1588359900000
+				date: fakeOrders[0].date 
 			},
 			res: 1
 		},
 		{ 
 			order1: { 
-				date: 1588359900000 
+				date: fakeOrders[0].date  
 			}, 
 			order2: { 
-				date: 1588359900000
+				date: fakeOrders[0].date 
 			},
 			res: 0
 		},

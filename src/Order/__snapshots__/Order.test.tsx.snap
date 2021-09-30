@@ -1,7 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Order.tsx Пустой Order 1`] = `""`;
-
 exports[`Order.tsx Пустой список 1`] = `
 <div
   className="Order"
@@ -40,7 +38,7 @@ exports[`Order.tsx Список товаров 1`] = `
     <span
       className="Order-shop"
     >
-      Сбереги Мега Маркер
+      Alihandro Express
     </span>
     <span
       id="date"
