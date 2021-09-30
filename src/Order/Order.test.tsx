@@ -18,6 +18,10 @@ describe('Order.tsx', () => {
 		(getDate as jest.Mock).mockReturnValue('wolf');
 	});
 
+	afterEach(() => {
+		jest.clearAllMocks();
+	});
+
 	it('default render', () => {
 		const fakeOrder = fakeOrders[1];
 
