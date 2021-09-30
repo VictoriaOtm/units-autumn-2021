@@ -19,7 +19,7 @@ describe('Order.tsx', () => {
 	
 	afterEach(() => {
 		jest.clearAllMocks();
-	})
+	});
 
 	it('order does not have a shop', () => {
 		const order = {
