@@ -6,7 +6,7 @@ import {shallow, configure} from 'enzyme';
 import {Order} from '../data/fakeOrders';
 import Adapter from 'enzyme-adapter-react-16';
 
-configure({ adapter: new Adapter() })
+configure({ adapter: new Adapter() });
 
 describe('Order.tsx', () => {
 
@@ -15,28 +15,28 @@ describe('Order.tsx', () => {
 	});
 
 	it('bad order', () => {
-		let order: Order = {}
+		const order: Order = {};
 		const wrapper = shallow(<OrderComponent order={order}/>);
 		expect(wrapper).toMatchSnapshot();
 	});
 
 	it('bad item', () => {
-		let order: Order = {
+		const order: Order = {
 			id: 228,
 			shop: 'front duratskiy',
 			date: 228,
-		}
+		};
 		const wrapper = shallow(<OrderComponent order={order}/>);
 		expect(wrapper).toMatchSnapshot();
 	});
 
 	it('bad item', () => {
-		let order: Order = {
+		const order: Order = {
 			id: 228,
 			shop: 'front duratskiy',
 			date: 228,
 			items: ['go', 'luchshe'],
-		}
+		};
 		const wrapper = shallow(<OrderComponent order={order}/>);
 		expect(wrapper).toMatchSnapshot();
 	});

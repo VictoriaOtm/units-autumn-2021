@@ -11,9 +11,9 @@ describe('sortByItemCount function', () => {
 		{order1: {items: ['item1', 'item2']}, order2: {items: ['1', '2']}, expected: 0},
 		{order1: {}, order2: {}, expected: 0},
 		
-	  ])('.add($order1, $order2)', ({order1, order2, expected}) => {
+	])('.add($order1, $order2)', ({order1, order2, expected}) => {
 		expect(sortByItemCount(order1, order2)).toBe(expected);
-	  });
+	});
 });
 
 describe('sortOrders function', () => {
@@ -23,13 +23,13 @@ describe('sortOrders function', () => {
 	});
 
 	it('sortFunction !== function', () => {
-		let order: Order[] = [];
+		const order: Order[] = [];
 		order.push( {
 			id: 1,
 			date: 228,
 			shop: 'kek',
 			items: ['pochemu', 'ts', 'daite', 'go']
-		}) 
+		});
 		const result = sortOrders(order, 228);
 		expect(result).toBe(undefined);
 	});
@@ -37,13 +37,13 @@ describe('sortOrders function', () => {
 
 describe('sortByDate function', () => {
 	it('empty date', () => {
-		let order1: Order = {
+		const order1: Order = {
 			id: 1,
 			shop: 'kek',
 			items: ['pochemu', 'ts', 'daite', 'go']
 		};
 
-		let order2: Order = {
+		const order2: Order = {
 			id: 1,
 			shop: 'kek',
 			items: ['pochemu', 'ts', 'daite', 'go']
@@ -54,14 +54,14 @@ describe('sortByDate function', () => {
 	});
 
 	it('date1 > date2', () => {
-		let order1: Order = {
+		const order1: Order = {
 			id: 1,
 			shop: 'kek',
 			date: 2,
 			items: ['pochemu', 'ts', 'daite', 'go']
 		};
 
-		let order2: Order = {
+		const order2: Order = {
 			id: 1,
 			shop: 'kek',
 			date: 1,
@@ -73,14 +73,14 @@ describe('sortByDate function', () => {
 	});
 
 	it('date1 = date2', () => {
-		let order1: Order = {
+		const order1: Order = {
 			id: 1,
 			shop: 'kek',
 			date: 2,
 			items: ['pochemu', 'ts', 'daite', 'go']
 		};
 
-		let order2: Order = {
+		const order2: Order = {
 			id: 1,
 			shop: 'kek',
 			date: 2,
@@ -96,7 +96,7 @@ describe('getSortFunction test', () => {
 	test.each([
 		{result: getSortFunction(sortTypes.DATE), expected: sortByDate},
 		{result: getSortFunction(sortTypes.COUNT), expected: sortByItemCount},
-	  ])('return $expected', ({result, expected}) => {
+	])('return $expected', ({result, expected}) => {
 		expect(result).toBe(expected);
-	  });
+	});
 });
