@@ -7,7 +7,7 @@ import Adapter from 'enzyme-adapter-react-16';
 configure({ adapter: new Adapter() });
 
 describe('App component', () => {
-	let wrapper;
+	let wrapper: any;
 
 	beforeEach(() => {
 		wrapper = shallow(<App/>);
