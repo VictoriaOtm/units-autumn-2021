@@ -1,32 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Order.tsx some test 1`] = `
-<div
-  className="Order"
->
-  <div
-    className="Order-header"
-  >
-    <span
-      className="Order-shop"
-    >
-      Сбереги Мега Маркер
-    </span>
-    <span
-      id="date"
-    />
-  </div>
-  <div
-    className="Order-items"
-  >
-    <div>
-      Заказ пуст...
-    </div>
-  </div>
-</div>
-`;
-
-exports[`render list 1`] = `
+exports[`Order.tsx render list 1`] = `
 <div
   className="Order"
 >
@@ -40,7 +14,9 @@ exports[`render list 1`] = `
     </span>
     <span
       id="date"
-    />
+    >
+      ura
+    </span>
   </div>
   <div
     className="Order-items"
@@ -61,7 +37,7 @@ exports[`render list 1`] = `
 </div>
 `;
 
-exports[`render with undefined order 1`] = `
+exports[`Order.tsx render with undefined order 1`] = `
 <div
   className="Order"
 >
@@ -75,7 +51,9 @@ exports[`render with undefined order 1`] = `
     </span>
     <span
       id="date"
-    />
+    >
+      ura
+    </span>
   </div>
   <div
     className="Order-items"
@@ -97,6 +75,32 @@ exports[`render with undefined order 1`] = `
       key="2"
     >
       Новый стиль один розница яйцо для упаковки форма латекс
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Order.tsx some test 1`] = `
+<div
+  className="Order"
+>
+  <div
+    className="Order-header"
+  >
+    <span
+      className="Order-shop"
+    >
+      Сбереги Мега Маркер
+    </span>
+    <span
+      id="date"
+    />
+  </div>
+  <div
+    className="Order-items"
+  >
+    <div>
+      Заказ пуст...
     </div>
   </div>
 </div>

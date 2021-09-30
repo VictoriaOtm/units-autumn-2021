@@ -27,21 +27,21 @@ describe('Order.tsx', () => {
 	it('some test', () => {
 		expect(wrapper).toMatchSnapshot();
 	});
-});
 
 
-it('render with undefined order', () => {
-	const order = {shop: undefined, date: undefined, items: undefined};
-	const wrapper = shallow(<OrderComponent
-		order={fakeOrders[1]}
-	/>);
-	expect(wrapper).toMatchSnapshot();
-});
-
-it('render list', () => {
-	const order = {shop: 'magazin', date: 15, items: ['item1', 'item2']};
-	const wrapper = shallow(<OrderComponent
-		order={order}
-	/>);
-	expect(wrapper).toMatchSnapshot();
+	it('render with undefined order', () => {
+		const order = {shop: undefined, date: undefined, items: undefined};
+		const wrapper = shallow(<OrderComponent
+			order={fakeOrders[1]}
+		/>);
+		expect(wrapper).toMatchSnapshot();
+	});
+	
+	it('render list', () => {
+		const order = {shop: 'magazin', date: 15, items: ['item1', 'item2']};
+		const wrapper = shallow(<OrderComponent
+			order={order}
+		/>);
+		expect(wrapper).toMatchSnapshot();
+	});
 });
