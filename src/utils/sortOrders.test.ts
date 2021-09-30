@@ -16,31 +16,13 @@ describe('sortOrders function', () => {
 
 describe('getSortFunction function', () => {
 	it('returns sortByDate', () => {
-		const orderDate1 = {
-			date: 31
-		};
-		const orderDate2 = {
-			date: 30
-		};
-
 		const sort = getSortFunction(sortTypes.DATE);
-		const result = sort(orderDate1, orderDate2);
-
-		expect(result).not.toBe(0);
+		expect(sort).toBe(sortByDate);
 	});
 
 	it('returns sortByItemCount', () => {
-		const orderItems1 = {
-			items: ['11', '12']
-		};
-		const orderItems2 = {
-			items: ['21', '22', '23']
-		};
-
 		const sort = getSortFunction(sortTypes.COUNT);
-		const result = sort(orderItems1, orderItems2);
-
-		expect(result).not.toBe(0);
+		expect(sort).toBe(sortByItemCount);
 	});
 });
 
