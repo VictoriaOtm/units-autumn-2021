@@ -33,7 +33,7 @@ describe('Order.tsx', () => {
 it('render with undefined order', () => {
 	const order = {shop: undefined, date: undefined, items: undefined};
 	const wrapper = shallow(<OrderComponent
-		order={order}
+		order={fakeOrders[1]}
 	/>);
 	expect(wrapper).toMatchSnapshot();
 });
