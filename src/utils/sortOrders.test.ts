@@ -28,7 +28,7 @@ describe('sortByItemCount function', () => {
 		expect(result).toEqual(0);
 	});
 
-	it('count items in first order is more than in second order', () => {
+	it('items in order1 > items in order2', () => {
 		const order1 = {
 			items: [1, 2, 3]
 		};
@@ -39,7 +39,7 @@ describe('sortByItemCount function', () => {
 		expect(result).toEqual(1);
 	});
 
-	it('count items in first order is less than in second order', () => {
+	it('items in order1 < items in order2', () => {
 		const order1 = {
 			items: [1, 2]
 		};
@@ -50,7 +50,7 @@ describe('sortByItemCount function', () => {
 		expect(result).toEqual(-1);
 	});
 
-	it('count items in first order is equal than in second order', () => {
+	it('items in order1 = items in order2', () => {
 		const order1 = {
 			items: [1]
 		};
@@ -74,7 +74,7 @@ describe('sortByDate function', () => {
 		expect(result).toEqual(0);
 	});
 
-	it('date in first order is less than in second', () => {
+	it('date in order1 < date in order2', () => {
 		const order1 = {
 			date: 2
 		};
@@ -86,7 +86,7 @@ describe('sortByDate function', () => {
 	});
 
 
-	it('date in first order is more than in second', () => {
+	it('date in order1 > date in order2', () => {
 		const order1 = {
 			date: 3
 		};
@@ -97,7 +97,7 @@ describe('sortByDate function', () => {
 		expect(result).toEqual(-1);
 	});
 
-	it('date in first order is equal than in second', () => {
+	it('date in order1 = date in order2', () => {
 		const order1 = {
 			date: 3
 		};
@@ -111,7 +111,7 @@ describe('sortByDate function', () => {
 
 describe('sortOrders function', () => {
 	test.each([
-		[null, null],
+		[null, ()=>{return ''}],
 		[[1, 2, 3, 4], null],
 	])('not valid case', (orders, sort) => {
 		const result = sortOrders(orders, sort);
@@ -172,5 +172,11 @@ describe('getSortFunction function', () => {
 	it('sortType = date', () => {
 		const result = getSortFunction(sortTypes.DATE);
 		expect(result).toBe(sortByDate);
+	});
+	
+	
+	it('sortType invalid', () => {
+		const result = getSortFunction('');
+		expect(result).toBeUndefined();;
 	});
 });
