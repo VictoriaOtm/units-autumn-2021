@@ -12,7 +12,7 @@ configure({ adapter: new Adapter() });
 describe('Order.tsx', () => {
 
 	beforeEach(() => {
-		getDate.mockReturnValue('11 июля');
+		getDate.mockReturnValue('ura');
 	});
 
 	afterEach(() => {
