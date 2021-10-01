@@ -17,7 +17,7 @@ describe('sortByItemCount function', () => {
 	});
 
 	test.each([
-		[{items:['item1', 'item2']}, {items:['1', '2']}, 0],
+		[fakeOrders[0], fakeOrders[0], 0],
 		[{}, {}, 0],
 		[fakeOrders[0],fakeOrders[1], -1],
 		[{items:['1','2','3']},{items:['1','2','3']}, 0],
