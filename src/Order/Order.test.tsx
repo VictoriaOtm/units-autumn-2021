@@ -12,7 +12,7 @@ configure({ adapter: new Adapter() });
 
 describe('Order.tsx', () => {
 	beforeEach(() => {
-		getDate.mockReturnValue('date');
+		(getDate as jest.Mock).mockReturnValue('some string');
 	});
 
 	afterAll(() => {
