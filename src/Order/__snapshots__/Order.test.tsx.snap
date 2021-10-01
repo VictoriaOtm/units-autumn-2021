@@ -28,8 +28,6 @@ exports[`Check Order Empty items 1`] = `
 </div>
 `;
 
-exports[`Check Order Empty order 1`] = `""`;
-
 exports[`Check Order Not empty items 1`] = `
 <div
   className="Order"

@@ -29,8 +29,8 @@ describe('Check Order', () => {
 			order: {},
 		};
 
-		const wrapper = shallow(<OrderComponent {...data}/>);
-		expect(wrapper).toMatchSnapshot();
+		shallow(<OrderComponent {...data}/>);
+		expect(getDate).not.toBeCalled();
 	});
 
 	it('Empty items', () => {
