@@ -44,12 +44,37 @@ describe('sortByItemCount function', () => {
 		expect(result).toBe(1);
 	});
 
+	it('order1 does not exist', () => {
+		const order1 = undefined;
+
+		const order2 = {
+			items: ['1', '2']
+		};
+
+		const result = sortOrders.sortByItemCount(order1, order2);
+
+		expect(result).toBe(0);
+	});
+
+	it('order2 does not exist', () => {
+		const order2 = undefined;
+
+		const order1 = {
+			items: ['1', '2']
+		};
+
+		const result = sortOrders.sortByItemCount(order1, order2);
+
+		expect(result).toBe(0);
+	});
+
+
 	it('first no items', () => {
 		const order1 = {
 		};
 
 		const order2 = {
-			items: ['1', '2'],
+			items: ['1', '2']
 		};
 
 		const result = sortOrders.sortByItemCount(order1, order2);
@@ -143,6 +168,30 @@ describe('sortByDate function', () => {
 		expect(result).toBe(0);
 	});
 
+	it('order1 does not exist', () => {
+		const order1 = undefined;
+
+		const order2 = {
+			date: 0
+		};
+
+		const result = sortOrders.sortByDate(order1, order2);
+
+		expect(result).toBe(0);
+	});
+
+	it('order2 does not exist', () => {
+		const order2 = undefined;
+
+		const order1 = {
+			date: 0
+		};
+
+		const result = sortOrders.sortByDate(order1, order2);
+
+		expect(result).toBe(0);
+	});
+
 	it('order1 date does not exist', () => {
 		const order1 = {};
 
@@ -191,5 +240,20 @@ describe('sortOrders function', () => {
 		const fun = jest.fn();
 		sortOrders.sortOrders(orders, fun);
 		expect(fun).not.toHaveBeenCalled();
+	});
+
+	it('function not exist', () => {
+		const orders = [
+			{
+				items: ['item1', 'item2'],
+			},
+			{
+				items: ['1', '2'],
+			}
+		];
+		const ordersToChange = Object.assign(orders);
+
+		sortOrders.sortOrders(ordersToChange, undefined);
+		expect(ordersToChange).toBe(orders);
 	});
 });
