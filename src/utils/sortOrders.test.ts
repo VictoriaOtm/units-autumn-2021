@@ -6,40 +6,35 @@ describe('test sortByItemCount', () => {
 		const order1: Order = {items: []};
 		const order2: Order = {items: []};
 
-		const result = sortByItemCount(order1, order2);
-		expect(result).toEqual(0);
+		expect(sortByItemCount(order1, order2)).toEqual(0);
 	});
 
 	it('test with not order items', () => {
 		const order1: Order = {};
 		const order2: Order = {};
 
-		const result = sortByItemCount(order1, order2);
-		expect(result).toEqual(0);
+		expect(sortByItemCount(order1, order2)).toEqual(0);
 	});
 
 	it('test orders1.length > orders2.length', () => {
 		const order1: Order = {items: ['a', 'b', 'a']};
 		const order2: Order = {items: ['a', 'b']};
 
-		const result = sortByItemCount(order1, order2);
-		expect(result).toEqual(1);
+		expect(sortByItemCount(order1, order2)).toEqual(1);
 	});
 
 	it('test order1.items.length < order2.items.length', () => {
 		const order1: Order = {items: ['a', 'b']};
 		const order2: Order = {items: ['a', 'b', 'a']};
 
-		const result = sortByItemCount(order1, order2);
-		expect(result).toEqual(-1);
+		expect(sortByItemCount(order1, order2)).toEqual(-1);
 	});
 
 	it('test orders1.length = orders2.length', () => {
 		const order1: Order = {items: ['a', 'a']};
 		const order2: Order = {items: ['a', 'a', 'a']};
 
-		const result = sortByItemCount(order1, order2);
-		expect(result).toEqual(-1);
+		expect(sortByItemCount(order1, order2)).toEqual(-1);
 	});
 });
 
@@ -48,32 +43,28 @@ describe('test sortByDate', () => {
 		{ order1: {}, order2: {} },
 		{ order1: { date: 0 }, order2: { date: 0 }}
 	])('test empty order date', (data) => {
-		const result = sortByDate(data.order1, data.order2);
-		expect(result).toEqual(0);
+		expect(sortByDate(data.order1, data.order2)).toEqual(0);
 	});
 
 	it('test date1 > date2', () => {
 		const order1: Order = { date: 2 };
 		const order2: Order = { date: 1 };
 
-		const result = sortByDate(order1, order2);
-		expect(result).toEqual(-1);
+		expect(sortByDate(order1, order2)).toEqual(-1);
 	});
 
 	it('test date1 < date2', () => {
 		const order1: Order = {date: 1 };
 		const order2: Order = {date: 2};
 
-		const result = sortByDate(order1, order2);
-		expect(result).toEqual(1);
+		expect(sortByDate(order1, order2)).toEqual(1);
 	});
 
 	it('test date1 = date2', () => {
 		const order1: Order = {date: 2 };
 		const order2: Order = {date: 2 };
 
-		const result = sortByDate(order1, order2);
-		expect(result).toEqual(0);
+		expect(sortByDate(order1, order2)).toEqual(0);
 	});
 });
 
