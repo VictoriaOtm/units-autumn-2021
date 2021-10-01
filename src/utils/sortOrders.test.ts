@@ -91,11 +91,11 @@ describe('sortOrders function', () => {
 	});
 
 
-	test.each([
-		{orders: [], func: sortByItemCount, expected: undefined},
-	])('test with different values', ({orders, func, expected}) => {
-		const result = sortOrders(orders, func);
-		expect(result).toBe(expected);
+	it('empty orders', () => {
+
+
+		const result = sortOrders([], sortByItemCount);
+		expect(result).toBe(undefined);
 	});
 
 });

@@ -13,7 +13,7 @@ export const sortTypes = {
  * @param {Array} orders - массив заказов
  * @param {Function} sortFunction - функция сортировки
  */
-export const sortOrders = (orders?: Order[], sortFunction?: any) => {
+export const sortOrders = (orders: Order[], sortFunction: any) => {
 	if (!orders || !orders.length) {
 		return;
 	}

@@ -4,7 +4,7 @@ import {getDate} from '../utils/getDate';
 import {Order} from '../data/fakeOrders';
 
 export type OrderComponentProps = {
-	order: Order,
+	order: Order|null,
 }
 
 export const OrderComponent: React.FC<OrderComponentProps> = ({
