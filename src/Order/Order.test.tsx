@@ -6,7 +6,6 @@ import React from 'react';
 import {OrderComponent} from './Order';
 
 import {fakeOrders} from '../data/fakeOrders';
-import {fakeOrder} from '../data/fakeOrder';
 
 import {shallow, configure} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
@@ -46,8 +45,12 @@ describe('Order.tsx', () => {
 		expect(getDate).toBeCalled();
 	});
 
-	it('null if no order supplied', () => {
-		const result = OrderComponent({ order: null });
-		expect(result).toBe(null);
+	test.each([
+		null,
+		{ id: 0, date: 1, items: [] },
+		{ id: 0, shop: 'wolf', items: [] },
+	])('OrderComponent({ order: %s }) should be null', (order) => {
+		const result = OrderComponent({ order: order });
+		expect(result).toBeNull();
 	});
 });
