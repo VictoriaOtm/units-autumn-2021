@@ -29,7 +29,7 @@ describe('sortByItemCount function', () => {
 
 	test.each([
 		[{date:undefined}, {date:undefined}, 0],
-		[fakeOrders[0], fakeOrders[1]), -1],
+		[fakeOrders[0], fakeOrders[1], -1],
 		[fakeOrders[1], fakeOrders[0], 1],
 		[fakeOrders[1], fakeOrders[1], 0],
 		[fakeOrders[1], {}, 0],
