@@ -17,6 +17,13 @@ describe('sortByItemCount function', () => {
 		expect(sortByItemCount(first, second)).toBe(expected);
 	});
 
+	test.each([
+		{first: {item: undefined}, second: {items: ['1', '2']}, expected: 0},
+		{first: {items: ['item1', 'item2', 'item3']}, second: {items: undefined}, expected: 0},		
+	])('uncorrect orders item', ({first, second, expected}) => {
+		expect(sortByItemCount(first, second)).toBe(expected);
+	});
+
 	it('empty orders', () => {
 		const order1 = {};
 
@@ -43,6 +50,13 @@ describe('sortByDate function', () => {
 		{first: {date: 1652481120000}, second: {date: 1652481120000}, expected: 0},		
 	])('sort items without date', ({first, second, expected}) => {
 		expect(sortByDate(first, second)).toBe(expected);
+	});
+
+	test.each([
+		{first: {date: undefined}, second: {}, expected: 0},
+		{first: {date: 1652481120000}, second: {date: undefined}, expected: 0},		
+	])('uncorrect orders date', ({first, second, expected}) => {
+		expect(sortByItemCount(first, second)).toBe(expected);
 	});
 
 	it('empty orders', () => {

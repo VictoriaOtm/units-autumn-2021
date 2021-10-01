@@ -73,4 +73,6 @@ exports[`Order.tsx render with full information about order 1`] = `
 </div>
 `;
 
+exports[`Order.tsx render with null date 1`] = `""`;
+
 exports[`Order.tsx render with only id 1`] = `""`;
