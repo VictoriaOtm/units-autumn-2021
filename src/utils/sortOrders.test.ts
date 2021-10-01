@@ -3,155 +3,66 @@ import {sortTypes} from './sortOrders';
 import {fakeOrders, Order} from '../data/fakeOrders';
 
 describe('sortByItemCount function', () => {
-	it('No order', () => {
-		const orders: Order[] = [
-			{
-			},
-			{
-				id: 123,
-				date: 1544356800000,
-				shop: 'Alihandro Express',
-				items: [
-					'Утиный пластмасса для показ новый год',
-					'Курица из нержавеющей стали, утка, гусь, голубь, питьевой фонтан',
-					'Новый стиль один розница яйцо для упаковки форма латекс',
-				]
-			}
-		];
-
-		const result = sortByItemCount(orders[0], orders[1]);
-
-		expect(result).toBe(0);
-	});
-	it('same items count', () => {
+	test.each([
+		[['item1', 'item2'], ['1', '2'], 0],
+		[['item1'], ['1', '2'], -1],
+		[['item1', 'item2'], ['1'], 1],
+		[undefined, ['1', '2'], 0],
+		[['item1', 'item2'], undefined, 0],
+	])('sortByItemCount for 2 orders', (items1, items2, expected) => {
 		const order1 = {
-			items: ['item1', 'item2'],
+			items: items1,
 		};
 
 		const order2 = {
-			items: ['1', '2'],
+			items: items2,
 		};
 
 		const result = sortByItemCount(order1, order2);
 
-		expect(result).toBe(0);
-	});
-	it('not same items count case 1', () => {
-		const order1 = {
-			items: ['item1', 'item2'],
-		};
-
-		const order2 = {
-			items: ['1'],
-		};
-
-		const result = sortByItemCount(order1, order2);
-
-		expect(result).toBe(1);
-	});
-	it('not same items count case -1', () => {
-		const order1 = {
-			items: ['item1'],
-		};
-
-		const order2 = {
-			items: ['1', '2'],
-		};
-
-		const result = sortByItemCount(order1, order2);
-
-		expect(result).toBe(-1);
+		expect(result).toBe(expected);
 	});
 
-	it('undefined items', () => {
-		const order1 = {
-		};
-
-		const order2 = {
-			items: ['1', '2'],
-		};
-
+	test.each([
+		[undefined, {items: ['1', '2']}, 0],
+		[{items: ['item1', 'item2']}, undefined, 0],
+	])('sortByItemCount for 2 orders where 1 doesn\'t exists', (order1, order2, expected) => {
 		const result = sortByItemCount(order1, order2);
-
-		expect(result).toBe(0);
+		expect(result).toBe(expected);
 	});
 });
 
 describe('sortByDate function', () => {
-	it('No order', () => {
-		const orders: Order[] = [
-			{
-			},
-			{
-				id: 123,
-				date: 1544356800000,
-				shop: 'Alihandro Express',
-				items: [
-					'Утиный пластмасса для показ новый год',
-					'Курица из нержавеющей стали, утка, гусь, голубь, питьевой фонтан',
-					'Новый стиль один розница яйцо для упаковки форма латекс',
-				]
-			}
-		];
-
-		const result = sortByDate(orders[0], orders[1]);
-
-		expect(result).toBe(0);
-	});
-	it('same date count', () => {
+	test.each([
+		[1, 1, 0],
+		[1, 2, 1],
+		[2, 1, -1],
+		[undefined, 1, 0],
+		[1, undefined, 0],
+		[0, 1, 0],
+		[1, 0, 0]
+	])('sortByDate all cases with two orders', (items1, items2, expected) => {
 		const order1 = {
-			date: 1,
+			date: items1,
 		};
 
 		const order2 = {
-			date: 1,
+			date: items2,
 		};
 
 		const result = sortByDate(order1, order2);
 
-		expect(result).toBe(0);
-	});
-	it('not same date case 1', () => {
-		const order1 = {
-			date: 2,
-		};
-
-		const order2 = {
-			date: 1,
-		};
-
-		const result = sortByDate(order1, order2);
-
-		expect(result).toBe(-1);
-	});
-	it('not same date case -1', () => {
-		const order1 = {
-			date: 1,
-		};
-
-		const order2 = {
-			date: 2,
-		};
-
-		const result = sortByDate(order1, order2);
-
-		expect(result).toBe(1);
+		expect(result).toBe(expected);
 	});
 
-	it('undefined items', () => {
-		const order1 = {
-		};
-
-		const order2 = {
-			date: 1,
-		};
-
+	test.each([
+		[undefined, {date: 1}, 0],
+		[{date: 1}, undefined, 0],
+	])('sortByDate one order does not exist', (order1, order2, expected) => {
 		const result = sortByDate(order1, order2);
-
-		expect(result).toBe(0);
+		expect(result).toBe(expected);
 	});
 });
-
 
 describe('sortOrders function', () => {
 	it('sortFunc should be called', () => {
