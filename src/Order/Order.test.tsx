@@ -40,7 +40,6 @@ describe('Order.tsx', () => {
 
 		const wrapper = shallow(<OrderComponent order={testOrder} />);
 		expect(wrapper).toMatchSnapshot();
-		expect(getDate).toHaveBeenCalled();
 		jest.clearAllMocks();
 	});
 });
