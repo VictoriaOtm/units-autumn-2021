@@ -28,9 +28,6 @@ describe('sortByItemCount function', () => {
 	});
 
 	test.each([
-		{ order1: null, order2: null, expected: 0 },
-		{ order1: null, order2: {}, expected: 0 },
-		{ order1: {}, order2: null, expected: 0 },
 		{ order1: {}, order2: {}, expected: 0 },
 		{ order1: { items: [] }, order2: {}, expected: 0 },
 		{ order1: {}, order2: { items: [] }, expected: 0 },
@@ -76,9 +73,6 @@ describe('sortByDate function', () => {
 		expect(sortByDate(order1, order2)).toBe(1);
 	});
 	test.each([
-		{ order1: null, order2: null, expected: 0 },
-		{ order1: null, order2: {}, expected: 0 },
-		{ order1: {}, order2: null, expected: 0 },
 		{ order1: {}, order2: {}, expected: 0 },
 		{ order1: { date: {} }, order2: {}, expected: 0 },
 		{ order1: {}, order2: { date: {} }, expected: 0 }
@@ -99,8 +93,6 @@ describe('getSortFunction function', () => {
 	});
 	test.each([
 		{ sortType: '', expected: undefined },
-		{ sortType: null, expected: undefined },
-		{ sortType: {}, expected: undefined }
 	])('Тест некорректных выборов', ({ sortType, expected }) => {
 		expect(getSortFunction(sortType)).toBe(expected);
 	});
@@ -120,11 +112,8 @@ describe('sortOrders function', () => {
 		expect(order).toStrictEqual([{}]);
 	});
 	test.each([
-		{ order: '', sortFunction: '', expected: '' },
-		{ order: null, sortFunction: null, expected: null },
 		{ order: [], sortFunction: null, expected: [] },
 		{ order: [], sortFunction: sortByDate, expected: [] },
-		{ order: null, sortFunction: sortByDate, expected: null }
 	])('Тест некорректных варивантов', ({ order, sortFunction, expected }) => {
 		sortOrders(order, sortFunction);
 		expect(order).toStrictEqual(expected);
