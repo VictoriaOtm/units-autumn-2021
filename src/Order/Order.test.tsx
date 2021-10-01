@@ -28,14 +28,12 @@ describe('Order.tsx', () => {
 		expect(getDate).toHaveBeenCalledTimes(1);
 	});
 
-	it('test return null', () => {
-		const data = {
-			order: {
-				data: 1,
-			},
-		};
-
-		const wrapper = shallow(<OrderComponent {...data}/>);
+	it.each([
+		{date: 0},
+		{shop: ''},
+		{}
+	])('test return null', (data) => {
+		const wrapper = shallow(<OrderComponent order={data}/>);
 		expect(wrapper.getElement()).toBeNull();
 	});
 
