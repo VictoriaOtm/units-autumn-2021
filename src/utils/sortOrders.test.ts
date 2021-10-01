@@ -93,9 +93,16 @@ describe('sortOrders function', () => {
 
 	it('empty orders', () => {
 
-
 		const result = sortOrders([], sortByItemCount);
 		expect(result).toBe(undefined);
+	});
+
+	it('empty orders', () => {
+
+		const orders: Order[] = [{'date':2}, {'date':1}];
+
+		sortOrders(orders, undefined);
+		expect(orders).toBe(orders);
 	});
 
 });
