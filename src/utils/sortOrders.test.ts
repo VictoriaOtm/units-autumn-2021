@@ -1,233 +1,74 @@
 import * as sortOrders from './sortOrders';
-import {sortByItemCount} from './sortOrders';
+import {sortByItemCount} from "./sortOrders";
 
 describe('sortByItemCount function', () => {
-	it('same items count', () => {
+	test.each([
+		[['item1', 'item2'], ['1', '2'], 0],
+		[['item1'], ['1', '2'], -1],
+		[['item1', 'item2'], ['1'], 1],
+		[undefined, ['1', '2'], 0],
+		[['item1', 'item2'], undefined, 0],
+	])('sortByItemCount for 2 orders', (items1, items2, expected) => {
 		const order1 = {
-			items: ['item1', 'item2'],
+			items: items1,
 		};
 
 		const order2 = {
-			items: ['1', '2'],
+			items: items2,
 		};
 
 		const result = sortOrders.sortByItemCount(order1, order2);
 
-		expect(result).toBe(0);
+		expect(result).toBe(expected);
 	});
 
-	it('first least', () => {
-		const order1 = {
-			items: ['item1'],
-		};
-
-		const order2 = {
-			items: ['1', '2'],
-		};
-
+	test.each([
+		[undefined, {items: ['1', '2']}, 0],
+		[{items: ['item1', 'item2']}, undefined, 0],
+	])('sortByItemCount for 2 orders where 1 doesn\'t exists', (order1, order2, expected) => {
 		const result = sortOrders.sortByItemCount(order1, order2);
-
-		expect(result).toBe(-1);
-	});
-
-	it('second least', () => {
-		const order1 = {
-			items: ['item1', 'item2'],
-		};
-
-		const order2 = {
-			items: ['1'],
-		};
-
-		const result = sortOrders.sortByItemCount(order1, order2);
-
-		expect(result).toBe(1);
-	});
-
-	it('order1 does not exist', () => {
-		const order1 = undefined;
-
-		const order2 = {
-			items: ['1', '2']
-		};
-
-		const result = sortOrders.sortByItemCount(order1, order2);
-
-		expect(result).toBe(0);
-	});
-
-	it('order2 does not exist', () => {
-		const order2 = undefined;
-
-		const order1 = {
-			items: ['1', '2']
-		};
-
-		const result = sortOrders.sortByItemCount(order1, order2);
-
-		expect(result).toBe(0);
-	});
-
-
-	it('first no items', () => {
-		const order1 = {
-		};
-
-		const order2 = {
-			items: ['1', '2']
-		};
-
-		const result = sortOrders.sortByItemCount(order1, order2);
-
-		expect(result).toBe(0);
-	});
-
-	it('second no items', () => {
-		const order2 = {
-		};
-
-		const order1 = {
-			items: ['1', '2'],
-		};
-
-		const result = sortOrders.sortByItemCount(order1, order2);
-
-		expect(result).toBe(0);
+		expect(result).toBe(expected);
 	});
 });
 
-
 describe('sortByDate function', () => {
-	it('same date count', () => {
+	test.each([
+		[222, 222, 0],
+		[111, 333, 1],
+		[333, 111, -1],
+		[0, 111, 0],
+		[333, 0, 0],
+		[undefined, 222, 0],
+		[222, undefined, 0],
+	])('sortByDate for 2 orders', (items1, items2, expected) => {
 		const order1 = {
-			date: 11
+			date: items1,
 		};
 
 		const order2 = {
-			date: 11
+			date: items2,
 		};
 
 		const result = sortOrders.sortByDate(order1, order2);
 
-		expect(result).toBe(0);
+		expect(result).toBe(expected);
 	});
 
-	it('first least', () => {
-		const order1 = {
-			date: 1
-		};
-
-		const order2 = {
-			date: 11
-		};
-
+	test.each([
+		[undefined, {date: 222}, 0],
+		[{date: 222}, undefined, 0],
+	])('sortByDate for 2 orders where 1 doesn\'t exists', (order1, order2, expected) => {
 		const result = sortOrders.sortByDate(order1, order2);
-
-		expect(result).toBe(1);
-	});
-
-	it('second least', () => {
-		const order1 = {
-			date: 11
-		};
-
-		const order2 = {
-			date: 1
-		};
-
-		const result = sortOrders.sortByDate(order1, order2);
-
-		expect(result).toBe(-1);
-	});
-
-	it('zero date first', () => {
-		const order1 = {
-			date: 0
-		};
-
-		const order2 = {
-			date: 1
-		};
-
-		const result = sortOrders.sortByDate(order1, order2);
-
-		expect(result).toBe(0);
-	});
-
-	it('zero date second', () => {
-		const order1 = {
-			date: 1
-		};
-
-		const order2 = {
-			date: 0
-		};
-
-		const result = sortOrders.sortByDate(order1, order2);
-
-		expect(result).toBe(0);
-	});
-
-	it('order1 does not exist', () => {
-		const order1 = undefined;
-
-		const order2 = {
-			date: 0
-		};
-
-		const result = sortOrders.sortByDate(order1, order2);
-
-		expect(result).toBe(0);
-	});
-
-	it('order2 does not exist', () => {
-		const order2 = undefined;
-
-		const order1 = {
-			date: 0
-		};
-
-		const result = sortOrders.sortByDate(order1, order2);
-
-		expect(result).toBe(0);
-	});
-
-	it('order1 date does not exist', () => {
-		const order1 = {};
-
-		const order2 = {
-			date: 1
-		};
-
-		const result = sortOrders.sortByDate(order1, order2);
-
-		expect(result).toBe(0);
-	});
-
-	it('order2 date does not exist', () => {
-		const order2 = {};
-
-		const order1 = {
-			date: 1
-		};
-
-		const result = sortOrders.sortByDate(order1, order2);
-
-		expect(result).toBe(0);
+		expect(result).toBe(expected);
 	});
 });
 
 describe('sortOrders function', () => {
 	it('function called', () => {
 		const orders = [
-			{
-				items: ['item1', 'item2'],
-			},
-			{
-				items: ['1', '2'],
-			}
+			{ items: ['item1', 'item2'] },
+			{ items: ['1', '2'] }
 		];
-
 
 		const fun = jest.fn();
 		sortOrders.sortOrders(orders, fun);
@@ -244,16 +85,38 @@ describe('sortOrders function', () => {
 
 	it('function not exist', () => {
 		const orders = [
-			{
-				items: ['item1', 'item2'],
-			},
-			{
-				items: ['1', '2'],
-			}
+			{ items: ['item1', 'item2'] },
+			{ items: ['1', '2'] }
 		];
-		const ordersToChange = Object.assign(orders);
+		const expectedOrders = Object.assign(orders); // copy
 
-		sortOrders.sortOrders(ordersToChange, undefined);
-		expect(ordersToChange).toBe(orders);
+		sortOrders.sortOrders(orders, undefined);
+		expect(orders).toStrictEqual(expectedOrders);
+	});
+
+	it('changing orders', () => {
+		const orders = [
+			{ items: ['item1', 'item2', 'item3'] },
+			{ items: ['1', '2'] }
+		];
+		const expectedOrders = [
+			{ items: ['1', '2'] },
+			{ items: ['item1', 'item2', 'item3'] }
+		];
+
+		sortOrders.sortOrders(orders, sortOrders.sortByItemCount);
+		expect(orders).toStrictEqual(expectedOrders); // сравниваем не указатели, а внутренности массива
+	});
+});
+
+describe('getSortFunction function', () => {
+	it('function id sortByItemCount', () => {
+		const sort = sortOrders.getSortFunction(sortOrders.sortTypes.COUNT);
+		expect(sort).toBe(sortOrders.sortByItemCount);
+	});
+
+	it('function is sortByDate', () => {
+		const sort = sortOrders.getSortFunction(sortOrders.sortTypes.DATE);
+		expect(sort).toBe(sortOrders.sortByDate);
 	});
 });
