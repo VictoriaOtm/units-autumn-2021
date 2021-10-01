@@ -14,6 +14,10 @@ describe('Order.tsx', () => {
 		(getDate as jest.Mock).mockReturnValue('01.01.01');
 	});
 
+	afterAll(() => {
+		jest.clearAllMocks();
+	});
+
 	it('test call get data', () => {
 		const order: Order = {
 			id: 100,
