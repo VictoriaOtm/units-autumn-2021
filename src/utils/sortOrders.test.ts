@@ -114,24 +114,10 @@ describe('getSortFunction function', () => {
 
 describe('sortOrders function', () => {
 	it('empty orders array', () => {
-		expect(sortOrders([], sortByDate)).toBe(undefined);
+		expect(sortOrders([], jest.fn())).toBe(undefined);
 	});
 
 	it('null instead of function', () => {
 		expect(sortOrders([{date: 1}], null)).toBe(undefined);
-	});
-
-	it('sort by date', () => {
-		const sortedOrders = [fakeOrders[2], fakeOrders[0], fakeOrders[1]];
-		const ordersToSort = fakeOrders.slice(0, 3);
-		sortOrders(ordersToSort, sortByDate);
-		expect(ordersToSort).toEqual(sortedOrders);
-	});
-
-	it('sort by itemsCount', () => {
-		const sortedOrders = [fakeOrders[0], fakeOrders[3], fakeOrders[1], fakeOrders[2]];
-		const ordersToSort = fakeOrders.slice(0, 4);
-		sortOrders(ordersToSort, sortByItemCount);
-		expect(ordersToSort).toEqual(sortedOrders);
 	});
 });
