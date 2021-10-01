@@ -76,27 +76,11 @@ describe('making sure .sort() is called', () => {
 			date: 1,
 		};
 		const orders = [order1, order2];
-		const ordersExpected = [order2, order1];
 
-		sortOrders(orders, sortByItemCount);
+		const sortFunc = jest.fn();
 
-		expect(orders).toEqual(ordersExpected);
-	});
+		sortOrders(orders, sortFunc);
 
-	it('correct sorting by date', () => {
-		const order1 = {
-			items: ['1', '2'],
-			date: 1,
-		};
-		const order2 = {
-			items: ['3', '4', '5'],
-			date: 2,
-		};
-		const orders = [order1, order2];
-		const ordersExpected = [order2, order1];
-
-		sortOrders(orders, sortByDate);
-
-		expect(orders).toEqual(ordersExpected);
+		expect(sortFunc).toBeCalled();
 	});
 });
