@@ -21,7 +21,6 @@ describe('sortByItemCount function', () => {
 		[{}, {}, 0],
 		[fakeOrders[0],fakeOrders[1], -1],
 		[{items:['1','2','3']},{items:['1','2','3']}, 0],
-		[null, null, 0]
 	])('test with different values', (first, second, expected) => {
 		const result = sortByItemCount(first, second);
 		expect(result).toBe(expected);
