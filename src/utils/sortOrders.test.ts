@@ -18,7 +18,7 @@ describe('sortByItemCount function', () => {
 		expect(result).toBe(0);
 	});
 
-	it('same items count', () => {
+	it('orders with undefined items', () => {
 		const order1 = {
 			items: undefined,
 		};
@@ -39,7 +39,7 @@ describe('sortByItemCount function', () => {
 		[{items:['1','2','3']},{items:['1','2']}, 1],
 		[{items:['1','2','3']},{items:['1','2', '3']}, 0],
 		[null, null, 0]
-	])('test', (first, second, expected) => {
+	])('test with different values', (first, second, expected) => {
 		const result = sortByItemCount(first, second);
 		expect(result).toBe(expected);
 	});
@@ -55,7 +55,7 @@ describe('sortByDate function', () => {
 		[{date:2}, {date:2}, 0],
 		[{date:2}, {date:1}, -1],
 		[{}, {}, 0],
-	])('test', (first, second, expected) => {
+	])('test with different values', (first, second, expected) => {
 		const result = sortByDate(first, second);
 		expect(result).toBe(expected);
 	});
@@ -88,6 +88,14 @@ describe('sortOrders function', () => {
 		sortOrders(orders, sortByDate);
 
 		expect(orders).toStrictEqual([{'date':2}, {'date':1}]);
+	});
+
+
+	test.each([
+		{orders: [], func: sortByItemCount, expected: undefined},
+	])('test with different values', ({orders, func, expected}) => {
+		const result = sortOrders(orders, func);
+		expect(result).toBe(expected);
 	});
 
 });

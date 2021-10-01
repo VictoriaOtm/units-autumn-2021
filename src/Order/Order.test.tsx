@@ -22,22 +22,21 @@ describe('Order.tsx', () => {
 		jest.resetModules();
 	});
 
-	const wrapper = shallow(<OrderComponent order={fakeOrders[0]}/>);
+	it('test with order with zero items', () => {
+		const wrapper = shallow(<OrderComponent order={fakeOrders[0]}/>);
 
-	it('some test', () => {
 		expect(wrapper).toMatchSnapshot();
 	});
 
 
-	it('render with undefined order', () => {
-		const order = {shop: undefined, date: undefined, items: undefined};
+	it('test with not zero items ', () => {
 		const wrapper = shallow(<OrderComponent
 			order={fakeOrders[1]}
 		/>);
 		expect(wrapper).toMatchSnapshot();
 	});
 	
-	it('render list', () => {
+	it('test several items', () => {
 		const order = {shop: 'magazin', date: 15, items: ['item1', 'item2']};
 		const wrapper = shallow(<OrderComponent
 			order={order}

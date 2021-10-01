@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Order.tsx render list 1`] = `
+exports[`Order.tsx test several items 1`] = `
 <div
   className="Order"
 >
@@ -37,7 +37,7 @@ exports[`Order.tsx render list 1`] = `
 </div>
 `;
 
-exports[`Order.tsx render with undefined order 1`] = `
+exports[`Order.tsx test with not zero items  1`] = `
 <div
   className="Order"
 >
@@ -80,7 +80,7 @@ exports[`Order.tsx render with undefined order 1`] = `
 </div>
 `;
 
-exports[`Order.tsx some test 1`] = `
+exports[`Order.tsx test with order with zero items 1`] = `
 <div
   className="Order"
 >
@@ -94,7 +94,9 @@ exports[`Order.tsx some test 1`] = `
     </span>
     <span
       id="date"
-    />
+    >
+      ura
+    </span>
   </div>
   <div
     className="Order-items"
