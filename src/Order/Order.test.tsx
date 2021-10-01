@@ -21,13 +21,14 @@ describe('Order.tsx', () => {
 		jest.resetModules();
 	});
 
-	it ('no shop in order', () => {
-		const wrapper = shallow(<OrderComponent order={{date: 1}}/>);
-		expect(wrapper.getElement()).toBeNull();
+	it('mocked function is callable', () => {
+		shallow(<OrderComponent order={fakeOrders[0]}/>);
+		expect(getDate).toHaveBeenCalledTimes(1);
 	});
 
-	it ('no date in order', () => {
-		const wrapper = shallow(<OrderComponent order={{shop: 'some shop'}}/>);
+
+	it.each([{date: 1}, {shop: 'some shop'}])('null return', (data) => {
+		const wrapper = shallow(<OrderComponent order={data}/>);
 		expect(wrapper.getElement()).toBeNull();
 	});
 
