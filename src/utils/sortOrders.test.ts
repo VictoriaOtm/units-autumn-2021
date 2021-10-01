@@ -7,7 +7,7 @@ describe('sortOrders', () => {
 		expect(func).toHaveBeenCalledTimes(1);
 	});
 
-	it('valid sort function', () => {
+	it('valid sort function of empty list', () => {
 		const func = jest.fn();
 		sortOrders([], func);
 		expect(func).toHaveBeenCalledTimes(0);
@@ -16,7 +16,7 @@ describe('sortOrders', () => {
 	test.each([
 		undefined,
 		null,
-	])('invalid sort function', (sortFunction) => {
+	])('invalid sort function of empty orders', (sortFunction) => {
 		const result = sortOrders([{}, {}], sortFunction);
 		expect(result).toBeUndefined();
 	});
@@ -24,13 +24,11 @@ describe('sortOrders', () => {
 
 describe('getSortFunction', () => {
 	it('sortType = DATE', () => {
-		const result = getSortFunction(sortTypes.DATE);
-		expect(result).toBe(sortByDate);
+		expect(getSortFunction(sortTypes.DATE)).toBe(sortByDate);
 	});
 
 	it('sortType = COUNT', () => {
-		const result = getSortFunction(sortTypes.COUNT);
-		expect(result).toBe(sortByItemCount);
+		expect(getSortFunction(sortTypes.COUNT)).toBe(sortByItemCount);
 	});
 });
 

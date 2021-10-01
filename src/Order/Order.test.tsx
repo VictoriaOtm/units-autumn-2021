@@ -26,24 +26,21 @@ describe('Order.tsx', () => {
 	});
 
 	it.each([
-		{ order: { date: 0, }, },
-		{ order: { shop: '', }, },
-		{ order: {}, }
+		{date: 0},
+		{shop: ''},
+		{}
 	])('test render with null', (data) => {
-		const wrapper = shallow(<OrderComponent {...data}/>);
+		const wrapper = shallow(<OrderComponent order={data}/>);
 		expect(wrapper.getElement()).toBeNull();
 	});
 
 	it('test empty array of items', () => {
-		const props = { order: [] };
-
-		const wrapper = shallow(<OrderComponent {...props}/>);
+		const wrapper = shallow(<OrderComponent order={fakeOrders[0]}/>);
 		expect(wrapper).toMatchSnapshot();
 	});
 
 	it('test not empty array of items', () => {
-		const props = { order: fakeOrders[1] };
-		const wrapper = shallow(<OrderComponent {...props}/>);
+		const wrapper = shallow(<OrderComponent order={fakeOrders[1]}/>);
 		expect(wrapper).toMatchSnapshot();
 	});
 });

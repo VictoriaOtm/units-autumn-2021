@@ -1,6 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Order.tsx test empty array of items 1`] = `""`;
+exports[`Order.tsx test empty array of items 1`] = `
+<div
+  className="Order"
+>
+  <div
+    className="Order-header"
+  >
+    <span
+      className="Order-shop"
+    >
+      Сбереги Мега Маркер
+    </span>
+    <span
+      id="date"
+    >
+      date
+    </span>
+  </div>
+  <div
+    className="Order-items"
+  >
+    <div>
+      Заказ пуст...
+    </div>
+  </div>
+</div>
+`;
 
 exports[`Order.tsx test not empty array of items 1`] = `
 <div
