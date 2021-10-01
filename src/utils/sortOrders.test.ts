@@ -19,7 +19,8 @@ describe('sortByItemCount function', () => {
 
 	test.each([
 		{first: {item: undefined}, second: {items: ['1', '2']}, expected: 0},
-		{first: {items: ['item1', 'item2', 'item3']}, second: {items: undefined}, expected: 0},		
+		{first: {items: ['item1', 'item2', 'item3']}, second: {items: undefined}, expected: 0},	
+		{first: {items: ['']}, second: {items: ['a']}, expected: 0},	
 	])('uncorrect orders item', ({first, second, expected}) => {
 		expect(sortByItemCount(first, second)).toBe(expected);
 	});
@@ -54,7 +55,8 @@ describe('sortByDate function', () => {
 
 	test.each([
 		{first: {date: undefined}, second: {}, expected: 0},
-		{first: {date: 1652481120000}, second: {date: undefined}, expected: 0},		
+		{first: {date: 1652481120000}, second: {date: undefined}, expected: 0},	
+		{first: {date: -123}, second: {date: -67}, expected: 0},		
 	])('uncorrect orders date', ({first, second, expected}) => {
 		expect(sortByItemCount(first, second)).toBe(expected);
 	});
@@ -85,8 +87,26 @@ describe('sortOrders function', () => {
 		{orders: [], sortFunction: sortByItemCount, expected: undefined},
 		{orders: [{date: 1652481120000}, {date: 1652481120000}], sortFunction: undefined, expected: undefined},	
 		{orders: [{date: 1652481120000}, {date: 1652481120000}], sortFunction: ['notFunction'], expected: undefined},		
-	])('correct dates', ({orders, sortFunction, expected}) => {
+	])('uncorrect dates', ({orders, sortFunction, expected}) => {
 		expect(sortOrders(orders, sortFunction)).toBe(expected);
+	});
+
+	it('sortOrders by date', () => {
+		const order = [{date: 1652481120000, shop: 'shop1'}, {date: 1652585550000, item: ['item1', 'item2']}];
+		const result = [{date: 1652585550000, item: ['item1', 'item2']}, {date: 1652481120000, shop: 'shop1'}];
+
+		sortOrders(order, sortByDate);
+
+		expect(order).toStrictEqual(result);
+	});
+
+	it('sortOrders by count', () => {
+		const order = [{items: ['item1'], shop: 'shop1'}, {date: 1652585550000, item: ['item1', 'item2']}];
+		const result = [{items: ['item1'], shop: 'shop1'}, {date: 1652585550000, item: ['item1', 'item2']}];
+
+		sortOrders(order, sortByItemCount);
+
+		expect(order).toStrictEqual(result);
 	});
 });
 
