@@ -15,7 +15,7 @@ exports[`Order.tsx test order with items 1`] = `
     <span
       id="date"
     >
-      date
+      some string
     </span>
   </div>
   <div
@@ -58,7 +58,7 @@ exports[`Order.tsx test order with not items 1`] = `
     <span
       id="date"
     >
-      date
+      some string
     </span>
   </div>
   <div
