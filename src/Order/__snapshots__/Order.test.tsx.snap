@@ -1,6 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Order.tsx bad item 1`] = `
+exports[`Order.tsx bad order and bad item 1`] = `""`;
+
+exports[`Order.tsx bad order and bad item 2`] = `
 <div
   className="Order"
 >
@@ -10,7 +12,7 @@ exports[`Order.tsx bad item 1`] = `
     <span
       className="Order-shop"
     >
-      front duratskiy
+      pochemy ne go
     </span>
     <span
       id="date"
@@ -28,7 +30,7 @@ exports[`Order.tsx bad item 1`] = `
 </div>
 `;
 
-exports[`Order.tsx bad item 2`] = `
+exports[`Order.tsx bad order and bad item 3`] = `
 <div
   className="Order"
 >
@@ -38,7 +40,7 @@ exports[`Order.tsx bad item 2`] = `
     <span
       className="Order-shop"
     >
-      front duratskiy
+      pochemy ne go
     </span>
     <span
       id="date"
@@ -64,5 +66,3 @@ exports[`Order.tsx bad item 2`] = `
   </div>
 </div>
 `;
-
-exports[`Order.tsx bad order 1`] = `""`;

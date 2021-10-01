@@ -8,10 +8,18 @@ import {sortTypes} from './sortOrders';
 
 describe('sortByItemCount function', () => {
 	test.each([
-		{order1: {items: ['item1', 'item2']}, order2: {items: ['1', '2']}, expected: 0},
-		{order1: {}, order2: {}, expected: 0},
+		{	
+			order1: {items: ['item1', 'item2']}, 
+			order2: {items: ['1', '2']}, 
+			expected: 0,
+		},
+		{
+			order1: {}, 
+			order2: {}, 
+			expected: 0,
+		},
 		
-	])('.add($order1, $order2)', ({order1, order2, expected}) => {
+	])('sort by item count tests', ({order1, order2, expected}) => {
 		expect(sortByItemCount(order1, order2)).toBe(expected);
 	});
 });
@@ -31,71 +39,48 @@ describe('sortOrders function', () => {
 			items: ['pochemu', 'ts', 'daite', 'go']
 		});
 		const result = sortOrders(order, 228);
-		expect(result).toBe(undefined);
+		expect(result).toBeUndefined;
 	});
 });
 
 describe('sortByDate function', () => {
-	it('empty date', () => {
-		const order1: Order = {
-			id: 1,
-			shop: 'kek',
-			items: ['pochemu', 'ts', 'daite', 'go']
-		};
-
-		const order2: Order = {
-			id: 1,
-			shop: 'kek',
-			items: ['pochemu', 'ts', 'daite', 'go']
-		};
-		
-		const result = sortByDate(order1, order2);
-		expect(result).toBe(0);
-	});
-
-	it('date1 > date2', () => {
-		const order1: Order = {
-			id: 1,
-			shop: 'kek',
-			date: 2,
-			items: ['pochemu', 'ts', 'daite', 'go']
-		};
-
-		const order2: Order = {
-			id: 1,
-			shop: 'kek',
-			date: 1,
-			items: ['pochemu', 'ts', 'daite', 'go']
-		};
-		
-		const result = sortByDate(order1, order2);
-		expect(result).toBe(-1);
-	});
-
-	it('date1 = date2', () => {
-		const order1: Order = {
-			id: 1,
-			shop: 'kek',
-			date: 2,
-			items: ['pochemu', 'ts', 'daite', 'go']
-		};
-
-		const order2: Order = {
-			id: 1,
-			shop: 'kek',
-			date: 2,
-			items: ['pochemu', 'ts', 'daite', 'go']
-		};
-		
-		const result = sortByDate(order1, order2);
-		expect(result).toBe(0);
+	test.each([
+		{
+			orders: [
+				{id: 1, shop: 'kek', items: ['pochemu', 'ts', 'daite', 'go']},
+				{id: 1, shop: 'kek', items: ['pochemu', 'ts', 'daite', 'go']},
+			],
+			expected: 0,
+		},
+		{
+			orders: [
+				{id: 1, shop: 'kek', items: ['pochemu', 'ts', 'daite', 'go'], date: 2},
+				{id: 1, shop: 'kek', items: ['pochemu', 'ts', 'daite', 'go'], date: 1},
+			],
+			expected: -1,
+		},
+		{
+			orders: [
+				{id: 1, shop: 'kek', items: ['pochemu', 'ts', 'daite', 'go'], date: 228},
+				{id: 1, shop: 'kek', items: ['pochemu', 'ts', 'daite', 'go'], date: 228},
+			],
+			expected: 0,
+		},
+	])('bad order and bad item', ({orders, expected}) => {
+		const result = sortByDate(orders[0], orders[1]);
+		expect(result).toBe(expected);
 	});
 });
 
 describe('getSortFunction test', () => {
 	test.each([
-		{result: getSortFunction(sortTypes.DATE), expected: sortByDate},
-		{result: getSortFunction(sortTypes.COUNT), expected: sortByItemCount},
+		{
+			result: getSortFunction(sortTypes.DATE), 
+			expected: sortByDate},
+		{
+			result: getSortFunction(sortTypes.COUNT), 
+			expected: sortByItemCount
+		},
 	])('return $expected', ({result, expected}) => {
 		expect(result).toBe(expected);
 	});

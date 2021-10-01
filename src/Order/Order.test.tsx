@@ -14,31 +14,27 @@ describe('Order.tsx', () => {
 		(getDate as jest.Mock).mockReturnValue('228');
 	});
 
-	it('bad order', () => {
-		const order: Order = {};
-		const wrapper = shallow(<OrderComponent order={order}/>);
-		expect(wrapper).toMatchSnapshot();
+	afterAll(() => {
+		jest.clearAllMocks();
 	});
 
-	it('bad item', () => {
-		const order: Order = {
+	test.each([
+		{
+				
+		},
+		{
 			id: 228,
-			shop: 'front duratskiy',
-			date: 228,
-		};
-		const wrapper = shallow(<OrderComponent order={order}/>);
-		expect(wrapper).toMatchSnapshot();
-	});
-
-	it('bad item', () => {
-		const order: Order = {
+			shop: 'pochemy ne go',
+			date: 228,	
+		},
+		{
 			id: 228,
-			shop: 'front duratskiy',
+			shop: 'pochemy ne go',
 			date: 228,
 			items: ['go', 'luchshe'],
-		};
+		},
+	])('bad order and bad item', (order: Order) => {
 		const wrapper = shallow(<OrderComponent order={order}/>);
 		expect(wrapper).toMatchSnapshot();
 	});
-
 });
