@@ -4,9 +4,9 @@ import {configure, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import {OrderComponent, OrderComponentProps} from './Order';
 import {fakeOrders} from '../data/fakeOrders';
-import {getDate} from '../utils/getDate';
 
 jest.mock('../utils/getDate');
+import {getDate} from '../utils/getDate';
 
 configure({adapter: new Adapter()});
 
@@ -22,6 +22,15 @@ describe('Check Order', () => {
 
 		shallow(<OrderComponent {...data}/>);
 		expect(getDate).toBeCalled();
+	});
+
+	it('Empty order', () => {
+		const data: OrderComponentProps = {
+			order: {},
+		};
+
+		const wrapper = shallow(<OrderComponent {...data}/>);
+		expect(wrapper).toMatchSnapshot();
 	});
 
 	it('Empty items', () => {

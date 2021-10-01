@@ -3,6 +3,26 @@ import {sortTypes} from './sortOrders';
 import {fakeOrders, Order} from '../data/fakeOrders';
 
 describe('sortByItemCount function', () => {
+	it('No order', () => {
+		const orders: Order[] = [
+			{
+			},
+			{
+				id: 123,
+				date: 1544356800000,
+				shop: 'Alihandro Express',
+				items: [
+					'Утиный пластмасса для показ новый год',
+					'Курица из нержавеющей стали, утка, гусь, голубь, питьевой фонтан',
+					'Новый стиль один розница яйцо для упаковки форма латекс',
+				]
+			}
+		];
+
+		const result = sortByItemCount(orders[0], orders[1]);
+
+		expect(result).toBe(0);
+	});
 	it('same items count', () => {
 		const order1 = {
 			items: ['item1', 'item2'],
@@ -58,6 +78,26 @@ describe('sortByItemCount function', () => {
 });
 
 describe('sortByDate function', () => {
+	it('No order', () => {
+		const orders: Order[] = [
+			{
+			},
+			{
+				id: 123,
+				date: 1544356800000,
+				shop: 'Alihandro Express',
+				items: [
+					'Утиный пластмасса для показ новый год',
+					'Курица из нержавеющей стали, утка, гусь, голубь, питьевой фонтан',
+					'Новый стиль один розница яйцо для упаковки форма латекс',
+				]
+			}
+		];
+
+		const result = sortByDate(orders[0], orders[1]);
+
+		expect(result).toBe(0);
+	});
 	it('same date count', () => {
 		const order1 = {
 			date: 1,
@@ -118,6 +158,20 @@ describe('sortOrders function', () => {
 		const sortFunc = jest.fn();
 		sortOrders(fakeOrders, sortFunc);
 		expect(sortFunc).toBeCalled();
+	});
+
+	it('sortFunc not func', () => {
+		const sortFunc = 'not func';
+		const res = sortOrders(fakeOrders, sortFunc);
+		expect(res).toBe(undefined);
+	});
+
+	it('0 orders', () => {
+		const orders: Order[] = [
+		];
+		const sortFunc = jest.fn();
+		const res = sortOrders(orders, sortFunc);
+		expect(res).toBe(undefined);
 	});
 
 	it('sortFunc shouldn`t be called', () => {
