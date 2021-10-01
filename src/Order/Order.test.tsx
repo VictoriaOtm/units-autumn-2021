@@ -18,7 +18,7 @@ describe('Order.tsx', () => {
 		jest.clearAllMocks();
 	});
 
-	it('test call get data', () => {
+	it('test one call getData', () => {
 		const order: Order = {
 			id: 100,
 			date: 1588359900000,
@@ -29,6 +29,23 @@ describe('Order.tsx', () => {
 		shallow(<OrderComponent order={order}/>);
 
 		expect(getDate).toBeCalledTimes(1);
+	});
+
+	test.each([
+		{
+			id: 100,
+			date: 1588359900000,
+			items: [],
+		},
+		{
+			id: 100,
+			shop: 'Сбереги Мега Маркер',
+			items: [],
+		},
+	])('test zero call getData', (order) => {
+		shallow(<OrderComponent order={order}/>);
+
+		expect(getDate).toBeCalledTimes(0);
 	});
 
 	it('check snapshot', () => {

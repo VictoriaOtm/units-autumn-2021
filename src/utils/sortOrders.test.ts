@@ -72,11 +72,11 @@ describe('sortByDate function', () => {
 });
 
 describe('sortOrders function', () => {
-	const sortFunction = () => {
-		console.log('i am sort!');
-	};
-
 	it('invalid orders', () => {
+		const sortFunction = () => {
+			console.log('i am sort!');
+		};
+
 		const res = sortOrders([], sortFunction);
 
 		expect(res).toBeUndefined();
@@ -95,6 +95,14 @@ describe('sortOrders function', () => {
 		const res = sortOrders(order, sort);
 
 		expect(res).toBeUndefined();
+	});
+
+	it('test call sortFunction', () => {
+		const sortFunction = jest.fn(orders => orders);
+
+		sortOrders([fakeOrders[0],fakeOrders[1]], sortFunction);
+
+		expect(sortFunction.mock.calls.length).toBe(1);
 	});
 });
 
