@@ -1,7 +1,7 @@
 import React from 'react';
 import './Order.css';
-import {getDate} from '../utils/getDate';
-import {Order} from '../data/fakeOrders';
+import { getDate } from '../utils/getDate';
+import { Order } from '../data/fakeOrders';
 
 export type OrderComponentProps = {
 	order: Order,
@@ -15,7 +15,7 @@ export const OrderComponent: React.FC<OrderComponentProps> = ({
 	}
 
 	const getItems = () => {
-		const {items} = order;
+		const { items } = order;
 
 		if (!items || !items.length) {
 			return (
