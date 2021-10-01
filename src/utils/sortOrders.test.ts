@@ -16,40 +16,26 @@ describe('sortByItemCount function', () => {
 		expect(result).toBe(0);
 	});
 
-	it('empty items', () => {
-		const result = sortByItemCount(fakeOrders[0],fakeOrders[1]);
-
-		expect(result).toBe(-1);
+	test.each([
+		[{items:['item1', 'item2']}, {items:['1', '2']}, 0],
+		[{}, {}, 0],
+		[fakeOrders[0],fakeOrders[1], -1],
+		[{items:['1','2','3']},{items:['1','2','3']}, 0],
+		[null, null, 0]
+	])('test with different values', (first, second, expected) => {
+		const result = sortByItemCount(first, second);
+		expect(result).toBe(expected);
 	});
 
-	it('empty items', () => {
-		const result = sortByItemCount({}, {});
-
-		expect(result).toBe(0);
-	});
-
-	it('sortByDate negative', () => {
-		const result = sortByDate(fakeOrders[0],fakeOrders[1]);
-
-		expect(result).toBe(-1);
-	});
-
-	it('sortByDate positive', () => {
-		const result = sortByDate(fakeOrders[1],fakeOrders[0]);
-
-		expect(result).toBe(1);
-	});
-
-	it('sortByDate empty element', () => {
-		const result = sortByDate(fakeOrders[1], {});
-
-		expect(result).toBe(0);
-	});
-
-	it('sortByDate empty element', () => {
-		const result = sortByDate(fakeOrders[1], fakeOrders[1]);
-
-		expect(result).toBe(0);
+	test.each([
+		[{date:undefined}, {date:undefined}, 0],
+		[fakeOrders[0], fakeOrders[1]), -1],
+		[fakeOrders[1], fakeOrders[0], 1],
+		[fakeOrders[1], fakeOrders[1], 0],
+		[fakeOrders[1], {}, 0],
+	])('test with different values', (first, second, expected) => {
+		const result = sortByDate(first, second);
+		expect(result).toBe(expected);
 	});
 });
 
