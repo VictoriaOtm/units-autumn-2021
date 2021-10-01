@@ -1,5 +1,4 @@
 import * as sortOrders from './sortOrders';
-import {sortByItemCount} from "./sortOrders";
 
 describe('sortByItemCount function', () => {
 	test.each([
