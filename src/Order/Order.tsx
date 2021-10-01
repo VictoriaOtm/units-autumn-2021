@@ -7,9 +7,7 @@ export type OrderComponentProps = {
 	order: Order,
 }
 
-export const OrderComponent: React.FC<OrderComponentProps> = ({
-	order
-}) => {
+export const OrderComponent: React.FC<OrderComponentProps> = ({order}) => {
 	if (!order || !order.shop || !order.date) {
 		return null;
 	}
