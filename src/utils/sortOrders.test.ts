@@ -1,33 +1,32 @@
 import { getSortFunction, sortByDate, sortByItemCount, sortOrders, sortTypes } from './sortOrders';
 
 describe('sortByItemCount function', () => {
-	it('same items count', () => {
-		const order1 = {
-			items: ['item1', 'item2']
-		};
-		const order2 = {
-			items: ['1', '2']
-		};
-		expect(sortByItemCount(order1, order2)).toBe(0);
+	test.each([
+		{
+			order1: {
+				items: ['item1', 'item2']
+			},
+			order2: { items: ['1', '2'] },
+			expected: 0
+		},
+		{
+			order1: {
+				items: ['item1', 'item2']
+			},
+			order2: { items: ['1'] },
+			expected: 1
+		},
+		{
+			order1: {
+				items: ['item1', 'item2']
+			},
+			order2: { items: ['1', '2', '3'] },
+			expected: -1
+		}
+	])('Корректные заказы', ({ order1, order2, expected }) => {
+		expect(sortByItemCount(order1, order2)).toBe(expected);
 	});
-	it('Order1 > oreder 2', () => {
-		const order1 = {
-			items: ['item1', 'item2']
-		};
-		const order2 = {
-			items: ['1']
-		};
-		expect(sortByItemCount(order1, order2)).toBe(1);
-	});
-	it('Order1 < oreder 2', () => {
-		const order1 = {
-			items: ['item1', 'item2']
-		};
-		const order2 = {
-			items: ['1', '2', '3']
-		};
-		expect(sortByItemCount(order1, order2)).toBe(-1);
-	});
+
 	test.each([
 		{ order1: null, order2: null, expected: 0 },
 		{ order1: null, order2: {}, expected: 0 },
@@ -39,12 +38,9 @@ describe('sortByItemCount function', () => {
 	])('Пустой заказ(ы)', ({ order1, order2, expected }) => {
 		expect(sortByItemCount(order1, order2)).toBe(expected);
 	});
-	test.each([{ order1: { items: {} }, order2: { items: {} }, expected: 0 }])(
-		'Некорректный items',
-		({ order1, order2, expected }) => {
-			expect(sortByItemCount(order1, order2)).toBe(expected);
-		}
-	);
+	it('Некорректный items', () => {
+		expect(sortByItemCount({ items: {} }, { items: {} })).toBe(0);
+	});
 });
 
 describe('sortByDate function', () => {
@@ -89,12 +85,9 @@ describe('sortByDate function', () => {
 	])('Пустой заказ(ы)', ({ order1, order2, expected }) => {
 		expect(sortByDate(order1, order2)).toBe(expected);
 	});
-	test.each([{ order1: { date: {} }, order2: { date: {} }, expected: 0 }])(
-		'Некорректный dates',
-		({ order1, order2, expected }) => {
-			expect(sortByDate(order1, order2)).toBe(expected);
-		}
-	);
+	it('Некорректный dates', () => {
+		expect(sortByDate({ date: {} }, { date: {} })).toBe(0);
+	});
 });
 
 describe('getSortFunction function', () => {
@@ -106,7 +99,6 @@ describe('getSortFunction function', () => {
 	});
 	test.each([
 		{ sortType: '', expected: undefined },
-		{ sortType: 'asdasd', expected: undefined },
 		{ sortType: null, expected: undefined },
 		{ sortType: {}, expected: undefined }
 	])('Тест некорректных выборов', ({ sortType, expected }) => {
@@ -131,16 +123,30 @@ describe('sortOrders function', () => {
 		{ order: '', sortFunction: '', expected: '' },
 		{ order: null, sortFunction: null, expected: null },
 		{ order: [], sortFunction: null, expected: [] },
-		{ order: null, sortFunction: {}, expected: null },
-		{ order: {}, sortFunction: {}, expected: {} },
 		{ order: [], sortFunction: sortByDate, expected: [] },
 		{ order: null, sortFunction: sortByDate, expected: null }
 	])('Тест некорректных варивантов', ({ order, sortFunction, expected }) => {
 		sortOrders(order, sortFunction);
 		expect(order).toStrictEqual(expected);
 	});
-	describe('sort by count', () => {
-		const sort = [
+	it('ort by count', () => {
+		const orders = [
+			{
+				items: ['1', '2'],
+				date: nowDate
+			},
+			{
+				items: ['1'],
+				date: bigDate
+			},
+			{
+				items: [],
+				date: smallDate
+			}
+		];
+		const sortFunction = getSortFunction(sortTypes.COUNT);
+		sortOrders(orders, sortFunction);
+		expect(orders).toStrictEqual([
 			{
 				items: [],
 				date: smallDate
@@ -153,70 +159,27 @@ describe('sortOrders function', () => {
 				items: ['1', '2'],
 				date: nowDate
 			}
-		];
-		test.each([
-			{
-				orders: [
-					{
-						items: ['1', '2'],
-						date: nowDate
-					},
-					{
-						items: ['1'],
-						date: bigDate
-					},
-					{
-						items: [],
-						date: smallDate
-					}
-				],
-				sortType: sortTypes.COUNT,
-				expected: sort
-			},
-			{
-				orders: [
-					{
-						items: [],
-						date: smallDate
-					},
-					{
-						items: ['1'],
-						date: bigDate
-					},
-					{
-						items: ['1', '2'],
-						date: nowDate
-					}
-				],
-				sortType: sortTypes.COUNT,
-				expected: sort
-			},
-			{
-				orders: [
-					{
-						items: ['1'],
-						date: bigDate
-					},
-					{
-						items: ['1', '2'],
-						date: nowDate
-					},
-					{
-						items: [],
-						date: smallDate
-					}
-				],
-				sortType: sortTypes.COUNT,
-				expected: sort
-			}
-		])('Тест сортировки', ({ orders, sortType, expected }) => {
-			const sortFunction = getSortFunction(sortType);
-			sortOrders(orders, sortFunction);
-			expect(orders).toStrictEqual(expected);
-		});
+		]);
 	});
-	describe('sort by date', () => {
-		const sort = [
+
+	it('sort by date', () => {
+		const orders = [
+			{
+				items: ['1', '2'],
+				date: nowDate
+			},
+			{
+				items: ['1'],
+				date: bigDate
+			},
+			{
+				items: [],
+				date: smallDate
+			}
+		];
+		const sortFunction = getSortFunction(sortTypes.DATE);
+		sortOrders(orders, sortFunction);
+		expect(orders).toStrictEqual([
 			{
 				items: ['1'],
 				date: bigDate
@@ -229,66 +192,6 @@ describe('sortOrders function', () => {
 				items: [],
 				date: smallDate
 			}
-		];
-		test.each([
-			{
-				orders: [
-					{
-						items: ['1', '2'],
-						date: nowDate
-					},
-					{
-						items: ['1'],
-						date: bigDate
-					},
-					{
-						items: [],
-						date: smallDate
-					}
-				],
-				sortType: sortTypes.DATE,
-				expected: sort
-			},
-			{
-				orders: [
-					{
-						items: [],
-						date: smallDate
-					},
-					{
-						items: ['1'],
-						date: bigDate
-					},
-					{
-						items: ['1', '2'],
-						date: nowDate
-					}
-				],
-				sortType: sortTypes.DATE,
-				expected: sort
-			},
-			{
-				orders: [
-					{
-						items: ['1'],
-						date: bigDate
-					},
-					{
-						items: ['1', '2'],
-						date: nowDate
-					},
-					{
-						items: [],
-						date: smallDate
-					}
-				],
-				sortType: sortTypes.DATE,
-				expected: sort
-			}
-		])('Тест сортировки', ({ orders, sortType, expected }) => {
-			const sortFunction = getSortFunction(sortType);
-			sortOrders(orders, sortFunction);
-			expect(orders).toStrictEqual(expected);
-		});
+		]);
 	});
 });
