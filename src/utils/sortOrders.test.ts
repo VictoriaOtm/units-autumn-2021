@@ -85,20 +85,20 @@ describe('sortByDate function', () => {
 
 	it('same date', ()=> {
 		const order1 = { date: 343 }, order2 = { date: 343 };
-		const result = sortByItemCount(order1, order2);
+		const result = sortByDate(order1, order2);
 		expect(result).toBe(0);
 	});
 
 	it('first date less than second date', ()=> {
 		const order1 = { date: 1 }, order2 = { date: 2 };
-		const result = sortByItemCount(order1, order2);
-		expect(result).toBe(0);
+		const result = sortByDate(order1, order2);
+		expect(result).toBe(1);
 	});
 
 	it('second date less than first date', ()=> {
-		const order1 = { date: 1 }, order2 = { date: 2 };
-		const result = sortByItemCount(order1, order2);
-		expect(result).toBe(0);
+		const order1 = { date: 2 }, order2 = { date: 1 };
+		const result = sortByDate(order1, order2);
+		expect(result).toBe(-1);
 	});
 });
 
