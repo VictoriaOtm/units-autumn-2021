@@ -15,20 +15,7 @@ describe('Order.tsx', () => {
 	});
 
 	afterAll(() => {
-		jest.clearAllMocks();
-	});
-
-	it('test one call getData', () => {
-		const order: Order = {
-			id: 100,
-			date: 1588359900000,
-			shop: 'Сбереги Мега Маркер',
-			items: ['Мороженное'],
-		};
-
-		shallow(<OrderComponent order={order}/>);
-
-		expect(getDate).toBeCalledTimes(1);
+		jest.resetModules();
 	});
 
 	test.each([
@@ -58,6 +45,7 @@ describe('Order.tsx', () => {
 
 		const wrapper: ShallowWrapper = shallow(<OrderComponent order={order}/>);
 
+		expect(getDate).toBeCalledTimes(1);
 		expect(wrapper).toMatchSnapshot();
 	});
 

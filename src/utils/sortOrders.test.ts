@@ -102,7 +102,7 @@ describe('sortOrders function', () => {
 
 		sortOrders([fakeOrders[0],fakeOrders[1]], sortFunction);
 
-		expect(sortFunction.mock.calls.length).toBe(1);
+		expect(sortFunction).toHaveBeenCalledTimes(1);
 	});
 });
 

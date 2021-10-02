@@ -48,6 +48,7 @@ export const getSortFunction = (sortType: typeof sortTypes.COUNT | typeof sortTy
  * @param order1
  * @param order2
  */
+
 export const sortByItemCount = (order1: Order, order2: Order): number => {
 	const {items: items1} = order1;
 	const {items: items2} = order2;
