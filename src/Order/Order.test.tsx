@@ -49,6 +49,6 @@ describe('Order.tsx', () => {
 
 	it('Cписок равен null', () => {
 		const wrapper = shallow(<OrderComponent {...data3}/>);
-		expect(wrapper).toMatchSnapshot();
+		expect(wrapper.getElement()).toBeNull();
 	});
 });

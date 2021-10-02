@@ -40,16 +40,14 @@ describe('Сортировка по числу', () => {
 		{	
 			order1: { }, 
 			order2: { },
-			res: 0
 		},
 		{	
 			order1: { items: [] }, 
 			order2: { items: [] },
-			res: 0
 		},
 	])('Проверки для некорректных данных в sortByItemCount function', (data) => {
 		const result = sortByItemCount(data.order1, data.order2);
-		expect(result).toBe(data.res);
+		expect(result).toBe(0);
 	});
 });
 
