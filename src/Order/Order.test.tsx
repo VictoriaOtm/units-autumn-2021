@@ -3,6 +3,7 @@ import React from 'react';
 import {shallow, configure} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
+jest.mock('../utils/getDate');
 import {getDate} from '../utils/getDate';
 
 import {OrderComponent} from './Order';
@@ -10,18 +11,29 @@ import {OrderComponent} from './Order';
 import {fakeOrders} from '../data/fakeOrders';
 
 configure({ adapter: new Adapter() });
-jest.mock('../utils/getDate');
 
 describe('Order.tsx', () => {
-	test.each(fakeOrders)('test order\'s snapshots', (order) => {
+	beforeEach(() => {
 		getDate.mockReturnValue('some date');
+	});
+	afterAll(() => {
+		jest.clearAllMocks();
+	});
 
-		shallow(<OrderComponent key={0}
+	test.each(fakeOrders)('test orders getDate called', (order) => {
+		shallow(<OrderComponent
+			key={0}
 			order={order}
 		/>);
 		expect(getDate).toBeCalled();
+	});
 
-		jest.clearAllMocks();
+	test.each(fakeOrders)('test order\'s snapshots', (order) => {
+		const wrapper = shallow(<OrderComponent
+			key={0}
+			order={order}
+		/>);
+		expect(wrapper).toMatchSnapshot();
 	});
 
 	it('Order not exists', () => {

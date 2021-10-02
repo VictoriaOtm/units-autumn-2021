@@ -92,20 +92,6 @@ describe('sortOrders function', () => {
 		sortOrders.sortOrders(orders, undefined);
 		expect(orders).toStrictEqual(expectedOrders);
 	});
-
-	it('changing orders', () => {
-		const orders = [
-			{ items: ['item1', 'item2', 'item3'] },
-			{ items: ['1', '2'] }
-		];
-		const expectedOrders = [
-			{ items: ['1', '2'] },
-			{ items: ['item1', 'item2', 'item3'] }
-		];
-
-		sortOrders.sortOrders(orders, sortOrders.sortByItemCount);
-		expect(orders).toStrictEqual(expectedOrders); // сравниваем не указатели, а внутренности массива
-	});
 });
 
 describe('getSortFunction function', () => {
