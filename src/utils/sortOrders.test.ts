@@ -41,9 +41,8 @@ describe('sortByItemCount function', () => {
 });
 
 describe('sortByDate function', () => {
-	const nowDate = new Date();
-	const bigDate = new Date();
-	bigDate.setFullYear(3000);
+	const nowDate = new Date('2021-09-30');
+	const bigDate = new Date('2022-09-30');
 
 	it('same date', () => {
 		const order1 = {
@@ -99,11 +98,9 @@ describe('getSortFunction function', () => {
 });
 
 describe('sortOrders function', () => {
-	const nowDate = new Date();
-	const bigDate = new Date();
-	bigDate.setFullYear(3000);
-	const smallDate = new Date();
-	smallDate.setFullYear(1000);
+	const nowDate = new Date('2021-09-30');
+	const bigDate = new Date('2022-09-30');
+	const smallDate = new Date('2020-09-30');
 
 	it('sortFunction not func', () => {
 		const order = [{}];
@@ -114,73 +111,9 @@ describe('sortOrders function', () => {
 	test.each([
 		{ order: [], sortFunction: null, expected: [] },
 		{ order: [], sortFunction: sortByDate, expected: [] },
+		{ order: [], sortFunction: ()=>{}, expected: [] },
 	])('Тест некорректных варивантов', ({ order, sortFunction, expected }) => {
 		sortOrders(order, sortFunction);
 		expect(order).toStrictEqual(expected);
-	});
-	it('ort by count', () => {
-		const orders = [
-			{
-				items: ['1', '2'],
-				date: nowDate
-			},
-			{
-				items: ['1'],
-				date: bigDate
-			},
-			{
-				items: [],
-				date: smallDate
-			}
-		];
-		const sortFunction = getSortFunction(sortTypes.COUNT);
-		sortOrders(orders, sortFunction);
-		expect(orders).toStrictEqual([
-			{
-				items: [],
-				date: smallDate
-			},
-			{
-				items: ['1'],
-				date: bigDate
-			},
-			{
-				items: ['1', '2'],
-				date: nowDate
-			}
-		]);
-	});
-
-	it('sort by date', () => {
-		const orders = [
-			{
-				items: ['1', '2'],
-				date: nowDate
-			},
-			{
-				items: ['1'],
-				date: bigDate
-			},
-			{
-				items: [],
-				date: smallDate
-			}
-		];
-		const sortFunction = getSortFunction(sortTypes.DATE);
-		sortOrders(orders, sortFunction);
-		expect(orders).toStrictEqual([
-			{
-				items: ['1'],
-				date: bigDate
-			},
-			{
-				items: ['1', '2'],
-				date: nowDate
-			},
-			{
-				items: [],
-				date: smallDate
-			}
-		]);
 	});
 });

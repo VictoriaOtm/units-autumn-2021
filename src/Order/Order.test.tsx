@@ -17,6 +17,10 @@ describe('Order.tsx', () => {
 		shop: 'shop'
 	};
 
+	afterAll(() => {
+		jest.resetModules();
+	});
+
 	it('some test', () => {
 		const wrapper = shallow(<OrderComponent order={order} />);
 		expect(wrapper).toMatchSnapshot();
