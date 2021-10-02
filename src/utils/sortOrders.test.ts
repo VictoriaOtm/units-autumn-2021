@@ -90,11 +90,12 @@ describe('getSortFunction function', () => {
 	])('Тест корректных выборов', ({ sortType, expected }) => {
 		expect(getSortFunction(sortType)).toBe(expected);
 	});
-	test.each([
-		{ sortType: '', expected: undefined },
-	])('Тест некорректных выборов', ({ sortType, expected }) => {
-		expect(getSortFunction(sortType)).toBe(expected);
-	});
+	test.each([{ sortType: '', expected: undefined }])(
+		'Тест некорректных выборов',
+		({ sortType, expected }) => {
+			expect(getSortFunction(sortType)).toBe(expected);
+		}
+	);
 });
 
 describe('sortOrders function', () => {
@@ -108,10 +109,15 @@ describe('sortOrders function', () => {
 		sortOrders(order, sortType);
 		expect(order).toStrictEqual([{}]);
 	});
+
+	const testFuns = () => {
+		return false;
+	};
+
 	test.each([
 		{ order: [], sortFunction: null, expected: [] },
 		{ order: [], sortFunction: sortByDate, expected: [] },
-		{ order: [], sortFunction: ()=>{}, expected: [] },
+		{ order: [], sortFunction: testFuns, expected: [] }
 	])('Тест некорректных варивантов', ({ order, sortFunction, expected }) => {
 		sortOrders(order, sortFunction);
 		expect(order).toStrictEqual(expected);
