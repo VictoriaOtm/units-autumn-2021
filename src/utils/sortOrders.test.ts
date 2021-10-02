@@ -1,13 +1,13 @@
 import {sortOrders, sortByItemCount, sortByDate, getSortFunction, sortTypes} from './sortOrders';
 
-describe.each([
-	[undefined, ['1', '2'], 0],
-	[['1', '2'], undefined, 0],
-	[['item1', 'item2'], ['100', '200'], 0],
-	[['1', '2'], ['1', '2', '3'], -1],
-	[['1', '2', '3'], ['1', '2'], 1],
-])('sortByItemCount function', (itemsFirstOrder, itemsSecondOrder, expected) => {
-	it('first order\'s items: %i, second order\'s items: %i', () => {
+describe('sortByItemCount function', () => {
+	test.each([
+		[undefined, ['1', '2'], 0],
+		[['1', '2'], undefined, 0],
+		[['item1', 'item2'], ['100', '200'], 0],
+		[['1', '2'], ['1', '2', '3'], -1],
+		[['1', '2', '3'], ['1', '2'], 1],
+	])('first order\'s items: %i, second order\'s items: %i', (itemsFirstOrder, itemsSecondOrder, expected) => {
 		const order1 = {
 			items: itemsFirstOrder,
 		};
@@ -29,14 +29,14 @@ describe('getSortFunction tests', () => {
 	});
 });
 
-describe.each([
-	[undefined, 1, 0],
-	[1, undefined, 0],
-	[1, 1, 0],
-	[1, 2, 1],
-	[2, 1, -1],
-])('sortByDate function', (dateFirstOrder, dateSecondOrder, expected) => {
-	it('first order\'s date: %i, second order\'s date: %i', () => {
+describe('sortByDate function', () => {
+	test.each([
+		[undefined, 1, 0],
+		[1, undefined, 0],
+		[1, 1, 0],
+		[1, 2, 1],
+		[2, 1, -1],
+	])('first order\'s date: %i, second order\'s date: %i', (dateFirstOrder, dateSecondOrder, expected) => {
 		const order1 = {
 			date: dateFirstOrder,
 		};
