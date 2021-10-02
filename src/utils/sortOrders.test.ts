@@ -82,12 +82,12 @@ describe('getSortFunction function', () => {
 
 describe('sortOrders function', () => {
 	it('correct sortOrders', () => {
-		
-		const orders: Order[] = [{'date':2}, {'date':1}];
+		const func = jest.fn();
+		const orders: Order[] = [{'date':2}, {'date':1}];		
 
-		sortOrders(orders, sortByDate);
+		sortOrders(orders, func);
 
-		expect(orders).toStrictEqual([{'date':2}, {'date':1}]);
+		expect(func).toBeCalledTimes(1);
 	});
 
 
@@ -97,7 +97,7 @@ describe('sortOrders function', () => {
 		expect(result).toBe(undefined);
 	});
 
-	it('empty orders', () => {
+	it('undefined sort', () => {
 
 		const orders: Order[] = [{'date':2}, {'date':1}];
 

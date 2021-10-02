@@ -35,14 +35,6 @@ describe('Order.tsx', () => {
 		/>);
 		expect(wrapper).toMatchSnapshot();
 	});
-	
-	it('test several items', () => {
-		const order = {shop: 'magazin', date: 15, items: ['item1', 'item2']};
-		const wrapper = shallow(<OrderComponent
-			order={order}
-		/>);
-		expect(wrapper).toMatchSnapshot();
-	});
 
 	it('test no date', () => {
 		const order = {shop: 'magazin', date: undefined, items: ['item1', 'item2']};
