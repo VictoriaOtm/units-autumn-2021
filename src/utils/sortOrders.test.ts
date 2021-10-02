@@ -1,7 +1,7 @@
 import {sortOrders, sortByItemCount, sortByDate, getSortFunction, sortTypes} from './sortOrders';
 
 describe('sortByItemCount function', () => {
-	test.each([
+	it.each([
 		[undefined, ['1', '2'], 0],
 		[['1', '2'], undefined, 0],
 		[['item1', 'item2'], ['100', '200'], 0],
@@ -30,7 +30,7 @@ describe('getSortFunction tests', () => {
 });
 
 describe('sortByDate function', () => {
-	test.each([
+	it.each([
 		[undefined, 1, 0],
 		[1, undefined, 0],
 		[1, 1, 0],
