@@ -10,9 +10,7 @@ jest.mock('../utils/getDate');
 import {getDate} from '../utils/getDate';
 
 describe('Order.ts', () => {
-	beforeEach(() => {
-		jest.resetModules();
-  
+	beforeEach(() => {  
 		getDate.mockReturnValue('16.02.2001');
 	});
   
