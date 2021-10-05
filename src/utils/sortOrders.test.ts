@@ -119,9 +119,8 @@ describe('sortOrders function', () => {
 	});
 
 	it('sort in orders', () => {
-		const orders = fakeOrders;
-		const func = sortByItemCount;
-		const result = sortOrders(orders, func);
+		const func = jest.fn();
+		sortOrders([{}, {}], func);
 		expect(func).toHaveBeenCalledTimes(1);
 	});
 });
