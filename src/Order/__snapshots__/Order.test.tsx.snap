@@ -28,8 +28,6 @@ exports[`Order.tsx render with empty items 1`] = `
 </div>
 `;
 
-exports[`Order.tsx render with empty shop 1`] = `""`;
-
 exports[`Order.tsx render with full information about order 1`] = `
 <div
   className="Order"
@@ -72,7 +70,3 @@ exports[`Order.tsx render with full information about order 1`] = `
   </div>
 </div>
 `;
-
-exports[`Order.tsx render with null date 1`] = `""`;
-
-exports[`Order.tsx render with only id 1`] = `""`;
