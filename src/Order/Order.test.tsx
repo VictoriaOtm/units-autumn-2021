@@ -28,8 +28,6 @@ describe('Order.tsx', () => {
 	it('render with empty shop', () => {
 		const wrapper = shallow(<OrderComponent order={{...fakeOrders[1], shop: ''}}/>);
 
-		expect(wrapper).toMatchSnapshot();
-
 		expect(wrapper.getElement()).toBeNull();
 	});
 
@@ -42,15 +40,11 @@ describe('Order.tsx', () => {
 	it('render with only id', () => {
 		const wrapper = shallow(<OrderComponent order={{id: 123}}/>);
 
-		expect(wrapper).toMatchSnapshot();
-
 		expect(wrapper.getElement()).toBeNull();
 	});
 
 	it('render with null date', () => {
 		const wrapper = shallow(<OrderComponent order={{...fakeOrders[1], date: 0}}/>);
-
-		expect(wrapper).toMatchSnapshot();
 
 		expect(wrapper.getElement()).toBeNull();
 	});
