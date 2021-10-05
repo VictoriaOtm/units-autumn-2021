@@ -70,7 +70,7 @@ describe('sortByDate function', () => {
 		expect(result).toBe(0);
 	});
 
-	it('date1 > date2 ', () => {
+	it('date1 < date2 ', () => {
 		const order1 = {
 			date: 1652585550000
 		};
@@ -84,7 +84,7 @@ describe('sortByDate function', () => {
 		expect(result).toBe(-1);
 	});
 
-	it('order1.length < order2.length ', () => {
+	it('date1 > date2 ', () => {
 		const order1 = {
 			date: 1544356800000
 		};
@@ -102,8 +102,8 @@ describe('sortByDate function', () => {
 		{first: {}, second: {}, expected: 0},
 		{first: {date: undefined}, second: {}, expected: 0},
 		{first: {date: 1652481120000}, second: {date: undefined}, expected: 0},	
-		{first: {date: -123}, second: {date: -67}, expected: 0},
-		{first: {date: 1652481120000}, second: {items: ['1', '2']}, expected: 0},
+		{first: {date: 0}, second: {date: 0}, expected: 0},
+		{first: {date: 0}, second: {items: ['1', '2']}, expected: 0},
 		{first: {items: ['item1', 'item2', 'item3']}, second: {date: 1652481120000}, expected: 0},			
 	])('uncorrect orders date', ({first, second, expected}) => {
 		expect(sortByItemCount(first, second)).toBe(expected);
