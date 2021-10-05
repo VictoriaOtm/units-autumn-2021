@@ -102,11 +102,10 @@ describe('sortByDate function', () => {
 		{first: {}, second: {}, expected: 0},
 		{first: {date: undefined}, second: {}, expected: 0},
 		{first: {date: 1652481120000}, second: {date: undefined}, expected: 0},	
-		{first: {date: 0}, second: {date: 0}, expected: 0},
 		{first: {date: 0}, second: {items: ['1', '2']}, expected: 0},
 		{first: {items: ['item1', 'item2', 'item3']}, second: {date: 1652481120000}, expected: 0},			
 	])('uncorrect orders date', ({first, second, expected}) => {
-		expect(sortByItemCount(first, second)).toBe(expected);
+		expect(sortByDate(first, second)).toBe(expected);
 	});
 });
 
