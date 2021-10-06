@@ -1,4 +1,4 @@
-import {sortByDate, sortByItemCount } from './sortOrders';
+import {sortByDate, sortByItemCount, getSortFunction, sortOrders, sortTypes} from './sortOrders';
 import {Order} from '../data/fakeOrders';
 
 describe('test sortByItemCount', () => {
@@ -32,9 +32,9 @@ describe('test sortByItemCount', () => {
 
 	it('test orders1.length = orders2.length', () => {
 		const order1: Order = { items: ['a', 'a'] };
-		const order2: Order = { items: ['a', 'a', 'a'] };
+		const order2: Order = { items: ['a', 'a'] };
 
-		expect(sortByItemCount(order1, order2)).toEqual(-1);
+		expect(sortByItemCount(order1, order2)).toEqual(0);
 	});
 });
 
@@ -68,3 +68,26 @@ describe('test sortByDate', () => {
 	});
 });
 
+describe('test getSortFunction', () => {
+	it('test sortType: DATE', () => {
+		expect(getSortFunction(sortTypes.DATE)).toBe(sortByDate);
+	});
+
+	it('test sortType: COUNT', () => {
+		expect(getSortFunction(sortTypes.COUNT)).toBe(sortByItemCount);
+	});
+});
+
+describe('test sortOrders', () => {
+	it('test sortOrders not empty list of orders', () => {
+		const func = jest.fn();
+		sortOrders([{}, {}], func);
+		expect(func).toHaveBeenCalledTimes(1);
+	});
+
+	it('test sortOrders empty list of orders', () => {
+		const func = jest.fn();
+		sortOrders([], func);
+		expect(func).toHaveBeenCalledTimes(0);
+	});
+});
