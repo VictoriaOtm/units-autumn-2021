@@ -14,10 +14,6 @@ export const sortTypes = {
  * @param {Function} sortFunction - функция сортировки
  */
 export const sortOrders = (orders: Order[], sortFunction: any) => {
-	if (!orders || !orders.length) {
-		return;
-	}
-
 	if (!sortFunction || typeof sortFunction !== 'function') {
 		return;
 	}
@@ -49,10 +45,6 @@ export const getSortFunction = (sortType: typeof sortTypes.COUNT | typeof sortTy
  * @param order2
  */
 export const sortByItemCount = (order1: Order, order2: Order): number => {
-	if (!order1 || !order2) {
-		return 0;
-	}
-
 	const {items: items1} = order1;
 	const {items: items2} = order2;
 
