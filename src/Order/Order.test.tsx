@@ -42,7 +42,7 @@ describe('Order.tsx', () => {
 				shop: 'shop'
 			}
 		}
-	])('null', ({ order }) => {
+	])('Передан пустой заказ', ({ order }) => {
 		const wrapper = shallow(<OrderComponent order={order} />);
 		expect(wrapper).toEqual({});
 	});
