@@ -7,7 +7,7 @@ import Adapter from 'enzyme-adapter-react-16';
 configure({ adapter: new Adapter() });
 
 describe('App component', () => {
-	let wrapper;
+	const wrapper = shallow(<App />);
 
 	it('render with default state DATE', () => {
 		expect(wrapper).toMatchSnapshot();
