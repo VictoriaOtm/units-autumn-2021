@@ -99,10 +99,6 @@ describe('getSortFunction function', () => {
 });
 
 describe('sortOrders function', () => {
-	const nowDate = new Date('2021-09-30');
-	const bigDate = new Date('2022-09-30');
-	const smallDate = new Date('2020-09-30');
-
 	it('sortFunction not func', () => {
 		const order = [{}];
 		const sortType = sortTypes.COUNT;
@@ -110,14 +106,9 @@ describe('sortOrders function', () => {
 		expect(order).toStrictEqual([{}]);
 	});
 
-	const testFuns = () => {
-		return false;
-	};
-
 	test.each([
 		{ order: [], sortFunction: null, expected: [] },
-		{ order: [], sortFunction: sortByDate, expected: [] },
-		{ order: [], sortFunction: testFuns, expected: [] }
+		{ order: [], sortFunction: sortByDate, expected: [] }
 	])('Тест некорректных варивантов', ({ order, sortFunction, expected }) => {
 		sortOrders(order, sortFunction);
 		expect(order).toStrictEqual(expected);
