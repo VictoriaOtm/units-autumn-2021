@@ -10,11 +10,13 @@ import {getDate} from '../utils/getDate';
 
 configure({adapter: new Adapter()});
 
-describe('Check Order', () => {
+describe('Check OrderComponent', () => {
 	beforeEach(() => {
 		getDate.mockReturnValue('date');
 	});
-
+	afterAll(() => {
+		jest.clearAllMocks();
+	});
 	it('getDate should be called', () => {
 		const data: OrderComponentProps = {
 			order: fakeOrders[0],
@@ -29,11 +31,11 @@ describe('Check Order', () => {
 			order: {},
 		};
 
-		shallow(<OrderComponent {...data}/>);
-		expect(getDate).not.toBeCalled();
+		const wrapper = shallow(<OrderComponent {...data}/>);
+		expect(wrapper.children().length).toBe(0);
 	});
 
-	it('Empty items', () => {
+	it('Empty items provided with order', () => {
 		const props = {
 			order: fakeOrders[0]
 		};
@@ -42,7 +44,7 @@ describe('Check Order', () => {
 		expect(wrapper).toMatchSnapshot();
 	});
 
-	it('Not empty items', () => {
+	it('Not empty items provided with order', () => {
 		const props = {
 			order: fakeOrders[1]
 		};

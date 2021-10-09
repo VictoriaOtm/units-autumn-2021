@@ -2,7 +2,7 @@ import {getSortFunction, sortByDate, sortByItemCount, sortOrders} from './sortOr
 import {sortTypes} from './sortOrders';
 import {fakeOrders, Order} from '../data/fakeOrders';
 
-describe('sortByItemCount function', () => {
+describe('Check sortByItemCount function', () => {
 	test.each([
 		[['item1', 'item2'], ['1', '2'], 0],
 		[['item1'], ['1', '2'], -1],
@@ -32,7 +32,7 @@ describe('sortByItemCount function', () => {
 	});
 });
 
-describe('sortByDate function', () => {
+describe('Check sortByDate function', () => {
 	test.each([
 		[1, 1, 0],
 		[1, 2, 1],
@@ -64,20 +64,20 @@ describe('sortByDate function', () => {
 	});
 });
 
-describe('sortOrders function', () => {
+describe('Check sortOrders function', () => {
 	it('sortFunc should be called', () => {
 		const sortFunc = jest.fn();
 		sortOrders(fakeOrders, sortFunc);
 		expect(sortFunc).toBeCalled();
 	});
 
-	it('sortFunc not func', () => {
+	it('sortFunc is not a func', () => {
 		const sortFunc = 'not func';
 		const res = sortOrders(fakeOrders, sortFunc);
 		expect(res).toBe(undefined);
 	});
 
-	it('0 orders', () => {
+	it('0 orders provided', () => {
 		const orders: Order[] = [
 		];
 		const sortFunc = jest.fn();
@@ -93,8 +93,8 @@ describe('sortOrders function', () => {
 	});
 });
 
-describe('sortByOrder function', () => {
-	it('undefined', () => {
+describe('Check getSortFunction function', () => {
+	it('undefined provided', () => {
 		const res = getSortFunction('');
 		expect(res).toBeUndefined();
 	});
@@ -102,7 +102,7 @@ describe('sortByOrder function', () => {
 	it.each([
 		'count',
 		sortTypes.COUNT,
-	])('sortByItemCount case', (date) => {
+	])('sortByItemCount case provided', (date) => {
 		const result = getSortFunction(date);
 		expect(result).toEqual(sortByItemCount);
 	});
@@ -110,7 +110,7 @@ describe('sortByOrder function', () => {
 	it.each([
 		'date',
 		sortTypes.DATE,
-	])('sortByDate case', (date) => {
+	])('sortByDate case provided', (date) => {
 		const result = getSortFunction(date);
 		expect(result).toEqual(sortByDate);
 	});

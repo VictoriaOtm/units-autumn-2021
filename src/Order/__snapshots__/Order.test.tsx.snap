@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Check Order Empty items 1`] = `
+exports[`Check OrderComponent Empty items provided with order 1`] = `
 <div
   className="Order"
 >
@@ -28,7 +28,7 @@ exports[`Check Order Empty items 1`] = `
 </div>
 `;
 
-exports[`Check Order Not empty items 1`] = `
+exports[`Check OrderComponent Not empty items provided with order 1`] = `
 <div
   className="Order"
 >
