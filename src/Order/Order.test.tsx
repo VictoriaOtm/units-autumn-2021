@@ -15,7 +15,7 @@ describe('Check OrderComponent', () => {
 		getDate.mockReturnValue('date');
 	});
 	afterAll(() => {
-		jest.clearAllMocks();
+		jest.resetModules();
 	});
 	it('getDate should be called', () => {
 		const data: OrderComponentProps = {
