@@ -17,18 +17,18 @@ describe('Order.tsx', () => {
 		getDate.mockReturnValue('some date');
 	});
 	afterAll(() => {
-		jest.clearAllMocks();
+		jest.resetModules();
 	});
 
-	test.each(fakeOrders)('test orders getDate called', (order) => {
+	it('test orders getDate called', () => {
 		shallow(<OrderComponent
 			key={0}
-			order={order}
+			order={fakeOrders[0]}
 		/>);
 		expect(getDate).toBeCalled();
 	});
 
-	test.each(fakeOrders)('test order\'s snapshots', (order) => {
+	test.each([fakeOrders[0], fakeOrders[1]])('test order\'s snapshots', (order) => {
 		const wrapper = shallow(<OrderComponent
 			key={0}
 			order={order}
